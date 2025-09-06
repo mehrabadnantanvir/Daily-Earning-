@@ -267,7 +267,7 @@
                     const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                     const defaultUserData = {
                         uid: currentUser.uid, name: currentUser.displayName || currentUser.email.split('@')[0], email: currentUser.email,
-                        balance: 50, referralCode: ownReferralCode, referredBy: null,
+                        balance: 10, referralCode: ownReferralCode, referredBy: null,
                         lastNotificationCheck: new Date(),
                         createdAt: serverTimestamp(),
                         dailyAdCount: 0, lastAdWatchDate: new Date().toISOString().split('T')[0], isBlocked: false
@@ -323,7 +323,7 @@
 
         function updateDynamicPaymentFields() {
             const selectedMethod = withdrawMethodSelect.value.toLowerCase();
-            let placeholder = "Enter Details";
+            let placeholder = "Enter your Number";
             if (selectedMethod.includes('upi')) placeholder = "Enter your UPI ID";
             if (selectedMethod.includes('bkash')) placeholder = "Enter your bKash Number";
             paymentDetailsContainer.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-lg input-field">`;
@@ -593,8 +593,8 @@
                 userData.dailyAdCount = newCount;
                 
                 let rewardAmount = 0;
-                if (taskType === 'miniApp') rewardAmount = 100;
-                else if (taskType !== 'inApp') rewardAmount = 50;
+                if (taskType === 'miniApp') rewardAmount = 20;
+                else if (taskType !== 'inApp') rewardAmount = 10;
 
                 if (rewardAmount > 0) {
                     await updateBalance(rewardAmount);
@@ -621,4 +621,5 @@
 
     </script>
 </body>
+
 </html>

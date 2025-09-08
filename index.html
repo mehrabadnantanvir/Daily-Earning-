@@ -172,20 +172,6 @@
     shareBtn.addEventListener("click", () => {
         const code = referralCode.textContent.trim();
         const link = `https://t.me/testnetsdf_bot?start=${code}`;
-
-        // যদি mobile device এ হয়, সরাসরি share API ব্যবহার করা যাবে
-        if (navigator.share) {
-            navigator.share({
-                title: "Join me on Testnet Bot",
-                text: "Use my referral code and join!",
-                url: link
-            }).catch(console.error);
-        } else {
-            // fallback: শুধু লিংক কপি হবে
-            navigator.clipboard.writeText(link).then(() => {
-                alert("Referral link copied: " + link);
-            });
-        }
     });
 </script>
             
@@ -686,5 +672,6 @@
 </body>
 
 </html>
+
 
 

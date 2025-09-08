@@ -190,15 +190,41 @@
 </script>
             
             <!-- Profile Page -->
-            <div id="profile-page" class="p-4 space-y-6 sub-page">
-                <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
-                <div class="flex flex-col items-center">
-                    <img src="https://placehold.co/100x100/1e1e1e/ff8c00?text=U" class="rounded-full mb-2">
-                    <h2 id="profile-name" class="text-xl font-bold">User Name</h2>
-                    <p id="profile-email" class="text-gray-400">user@email.com</p>
-                </div>
-                <button id="logout-btn" class="w-full mt-6 p-3 rounded-lg bg-red-600 text-white font-bold">Logout</button>
+             <div id="profile-page" class="p-4 space-y-6 sub-page bg-[#0f172a] min-h-screen text-white">
+    <!-- Title -->
+    <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
+
+    <!-- Profile Info Card -->
+    <div class="bg-[#1e293b] p-6 rounded-xl shadow-lg">
+        <div class="flex flex-col items-center mb-6">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/063/477/529/small/neutral-gray-silhouette-of-male-avatar-defoult-photo-placeholder-with-short-hair-for-anonymous-profile-picture-with-minimalist-style-suitable-for-various-social-media-platforms-and-websites-vector.jpg" class="rounded-full border-2 border-gray-600 mb-3">
+                  <p id="profile-name" class="font-semibold">Username:</p>
+        </div>
+
+        <!-- Details -->
+        <div class="space-y-3 text-sm">
+            <div class="bg-[#0f172a] p-3 rounded-lg">
+                
+                <p id="profile-email" class="text-gray-300"></p>
             </div>
+            <div class="bg-[#0f172a] p-3 rounded-lg">
+                <p class="font-semibold">Coins:</p>
+                <p id="coin-balances" class="text-yellow-400"></p>
+            </div>
+            <div class="bg-[#0f172a] p-3 rounded-lg text-gray-400 text-xs">
+                <p>
+                    Note: This is our trusted free income Telegram bot, here you will get 
+                    <span class="text-green-400 font-semibold">100% withdrawal payment</span> by working.
+                </p>
+            </div>
+        </div>
+
+        <!-- Logout Button -->
+        <button id="logout-btn" class="w-full mt-6 p-3 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition">
+            Logout
+        </button>
+    </div>
+</div>
             
             <!-- Notifications Page -->
             <div id="notifications-page" class="p-4 space-y-4 sub-page">
@@ -249,6 +275,7 @@
         const loader = document.getElementById('loader');
         const coinBalanceEl = document.getElementById('coin-balance');
         const walletCoinBalanceEl = document.getElementById('wallet-coin-balance');
+        const ProfileCoinBalanceE1 = document.getElementById('coin-balances');
         const profileNameEl = document.getElementById('profile-name');
         const profileEmailEl = document.getElementById('profile-email');
         const referralCodeEl = document.getElementById('referral-code');
@@ -331,6 +358,7 @@
             const balance = userData.balance || 0;
             coinBalanceEl.textContent = balance;
             walletCoinBalanceEl.textContent = balance;
+            ProfileCoinBalanceE1.textContent = balance;
             profileNameEl.textContent = userData.name || 'No Name';
             profileEmailEl.textContent = userData.email || 'No Email';
             referralCodeEl.textContent = userData.referralCode || '...';
@@ -658,4 +686,5 @@
 </body>
 
 </html>
+
 

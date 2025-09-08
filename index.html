@@ -160,12 +160,20 @@
     const copyBtn = document.getElementById("copy-code-btn");
     const referralCode = document.getElementById("referral-code");
     const shareBtn = document.getElementById("share-btn");
+    
+    // Copy code button
+    copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(referralCode.textContent).then(() => {
+            alert("Referral code copied!");
+        });
+    });
 
     // Share button
     shareBtn.addEventListener("click", () => {
         const code = referralCode.textContent.trim();
-        const link = `https://t.me/testnetsdf_bot?start=${code}`;
+        const link = `https://t.me/addincome00_bot?start=${code}`;
 
+        // যদি mobile device এ হয়, সরাসরি share API ব্যবহার করা যাবে
         if (navigator.share) {
             navigator.share({
                 title: "Join me on Daily Earning Bot",
@@ -173,6 +181,7 @@
                 url: link
             }).catch(console.error);
         } else {
+            // fallback: শুধু লিংক কপি হবে
             navigator.clipboard.writeText(link).then(() => {
                 alert("Referral link copied: " + link);
             });
@@ -677,6 +686,7 @@
 </body>
 
 </html>
+
 
 
 

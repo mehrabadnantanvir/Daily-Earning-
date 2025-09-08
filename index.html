@@ -137,23 +137,58 @@
 
             <!-- Refer Page -->
             <div id="refer-page" class="p-4 space-y-6 sub-page">
-                 <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
-                 <div class="card-bg p-6 rounded-lg text-center">
-                     <p class="text-gray-400 mb-2">Your Referral Code</p>
-                     <div class="bg-gray-800 p-3 rounded-lg flex items-center justify-center mb-4">
-                         <span id="referral-code" class="text-2xl font-bold tracking-widest">LOADING...</span>
-                         <button id="copy-code-btn" class="ml-4"><i data-lucide="copy" class="w-6 h-6 text-gray-400"></i></button>
-                     </div>
-                     <p class="text-sm text-gray-300">Share the code with your friends.</p>
-                 </div>
-                 <button id="share-btn" class="w-full p-3 rounded-lg btn-accent">Share Your Code</button>
-                 <div class="card-bg p-4 rounded-lg mt-6">
-                    <h3 class="font-semibold mb-3 text-center">Have a Referral Code?</h3>
-                    <input id="enter-referral-code" type="text" placeholder="Enter code here" class="w-full p-3 rounded-lg input-field mb-3">
-                    <button id="apply-referral-btn" class="w-full p-3 rounded-lg btn-outline-accent">Apply Code</button>
-                 </div>
-            </div>
+    <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
+    <div class="card-bg p-6 rounded-lg text-center">
+        <p class="text-gray-400 mb-2">Your Referral Code</p>
+        <div class="bg-gray-800 p-3 rounded-lg flex items-center justify-center mb-4">
+            <span id="referral-code" class="text-2xl font-bold tracking-widest">ABC123</span>
+            <button id="copy-code-btn" class="ml-4">
+                <i data-lucide="copy" class="w-6 h-6 text-gray-400"></i>
+            </button>
+        </div>
+        <p class="text-sm text-gray-300">Share the code with your friends.</p>
+    </div>
+    <button id="share-btn" class="w-full p-3 rounded-lg btn-accent">Share Your Code</button>
+    <div class="card-bg p-4 rounded-lg mt-6">
+        <h3 class="font-semibold mb-3 text-center">Have a Referral Code?</h3>
+        <input id="enter-referral-code" type="text" placeholder="Enter code here" class="w-full p-3 rounded-lg input-field mb-3">
+        <button id="apply-referral-btn" class="w-full p-3 rounded-lg btn-outline-accent">Apply Code</button>
+    </div>
+</div>
 
+<script>
+    const copyBtn = document.getElementById("copy-code-btn");
+    const referralCode = document.getElementById("referral-code");
+    const shareBtn = document.getElementById("share-btn");
+
+    // Copy code button
+    copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(referralCode.textContent).then(() => {
+            alert("Referral code copied!");
+        });
+    });
+
+    // Share button
+    shareBtn.addEventListener("click", () => {
+        const code = referralCode.textContent.trim();
+        const link = `https://t.me/testnetsdf_bot?start=${code}`;
+
+        // যদি mobile device এ হয়, সরাসরি share API ব্যবহার করা যাবে
+        if (navigator.share) {
+            navigator.share({
+                title: "Join me on Testnet Bot",
+                text: "Use my referral code and join!",
+                url: link
+            }).catch(console.error);
+        } else {
+            // fallback: শুধু লিংক কপি হবে
+            navigator.clipboard.writeText(link).then(() => {
+                alert("Referral link copied: " + link);
+            });
+        }
+    });
+</script>
+            
             <!-- Profile Page -->
             <div id="profile-page" class="p-4 space-y-6 sub-page">
                 <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
@@ -623,3 +658,4 @@
 </body>
 
 </html>
+

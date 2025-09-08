@@ -161,17 +161,22 @@
     const referralCode = document.getElementById("referral-code");
     const shareBtn = document.getElementById("share-btn");
 
-    // Copy code button
-    copyBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(referralCode.textContent).then(() => {
-            alert("Referral code copied!");
-        });
-    });
-
     // Share button
     shareBtn.addEventListener("click", () => {
         const code = referralCode.textContent.trim();
-        const link = `https://t.me/addincome00_bot?start=${code}`;
+        const link = `https://t.me/testnetsdf_bot?start=${code}`;
+
+        if (navigator.share) {
+            navigator.share({
+                title: "Join me on Daily Earning Bot",
+                text: "Use my referral code and join!",
+                url: link
+            }).catch(console.error);
+        } else {
+            navigator.clipboard.writeText(link).then(() => {
+                alert("Referral link copied: " + link);
+            });
+        }
     });
 </script>
             
@@ -672,6 +677,7 @@
 </body>
 
 </html>
+
 
 
 

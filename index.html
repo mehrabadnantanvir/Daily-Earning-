@@ -170,7 +170,7 @@
 
     // Share button
     shareBtn.addEventListener("click", () => {
-        const code = referralCode.textContent.trim();
+        const code = referralCode.textContent.clipboard.writetext.;
         const link = `https://t.me/addincome00_bot?start=${code}`;
 
         // যদি mobile device এ হয়, সরাসরি share API ব্যবহার করা যাবে
@@ -686,6 +686,7 @@
 </body>
 
 </html>
+
 
 
 

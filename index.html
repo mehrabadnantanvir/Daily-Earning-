@@ -5,38 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Earning</title>
     
-    <!-- Your New Ad Code -->
- <script src='//libtl.com/sdk.js' data-zone='9828924' data-sdk='show_9828924'></script>
+    <!-- Original Ad Code -->
+    <script src='//libtl.com/sdk.js' data-zone='9828924' data-sdk='show_9828924'></script>
+    
+    <!-- New Ad Codes -->
+    <script async src="https://www.revenuecpmgate.com/yqv7fk7tyi?key=cf74cba9da8656392aeb5240c643794a"></script>
+    <script async src="https://www.revenuecpmgate.com/rti7fc03?key=af33268b8d8270d2bf7542b8cd5a6295"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #121212; color: #ffffff; }
         .dark-bg { background-color: #121212; }
         .card-bg { background-color: #1e1e1e; }
-        .border-accent { border-color: #ff8c00; }
-        .text-accent { color: #ff8c00; }
-        .btn, .btn-accent, .btn-outline-accent { transition: all 0.2s ease-in-out; transform: scale(1); }
+        .border-accent { border-color: #2768F5; }
+        .text-accent { color: #2768F5; }
+        .btn, .btn-accent, .btn-outline-accent { transition: all 0.2s ease-in-out; transform: scale(1); position: relative; overflow: hidden; }
         .btn:active, .btn-accent:active, .btn-outline-accent:active { transform: scale(0.95); }
-        .btn-accent { background-color: #ff8c00; color: #121212; font-weight: bold; }
-        .btn-accent:hover { background-color: #e67e00; }
-        .btn-outline-accent { border: 1px solid #ff8c00; color: #ff8c00; }
-        .btn-outline-accent:hover { background-color: #ff8c00; color: #121212; }
+        .btn::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.2); border-radius: 50%; transform: translate(-50%, -50%); opacity: 0; transition: width 0.3s, height 0.3s, opacity 0.3s; }
+        .btn:active::before { width: 200%; height: 200%; opacity: 1; }
+        .btn-accent { background-color: #2768F5; color: #ffffff; font-weight: bold; }
+        .btn-accent:hover { background-color: #1e5ac7; }
+        .btn-outline-accent { border: 1px solid #2768F5; color: #2768F5; }
+        .btn-outline-accent:hover { background-color: #2768F5; color: #ffffff; }
         .input-field { background-color: #2c2c2c; border: 1px solid #444; }
         .main-page { display: none; }
         .main-page.active { display: flex; animation: fadeIn 0.5s ease-in-out; }
         .sub-page { display: none; }
         .sub-page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-        .bottom-nav a.active { color: #ff8c00; }
+        .bottom-nav a.active { color: #2768F5; position: relative; }
+        .bottom-nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(to right, #2768F5, #1e5ac7);
+            border-radius: 2px;
+        }
         .notification-dot {
             position: absolute; top: -2px; right: -2px; width: 10px; height: 10px;
             background-color: #ef4444; border-radius: 50%; border: 2px solid #121212; display: none;
         }
+        .glassmorphism {
+            background: rgba(30, 30, 30, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glossy { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0)); }
+        .dynamic-bg { background: radial-gradient(circle, #2768F5 0%, #121212 100%); animation: pulse 5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+        .social-icons i {
+            transition: transform 0.2s ease-in-out;
+        }
+        .social-icons i:hover {
+            transform: scale(1.2);
+        }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+        @keyframes glow { 0% { text-shadow: 0 0 5px #2768F5; } 50% { text-shadow: 0 0 20px #2768F5; } 100% { text-shadow: 0 0 5px #2768F5; } }
+        .bounce { animation: bounce 0.5s; }
+        .glow { animation: glow 1s infinite; }
+        .streak-bar { background: linear-gradient(to right, #2768F5, #1e5ac7); }
+        .progress-bar { background: #444; border-radius: 50px; overflow: hidden; }
+        .progress-fill { background: #2768F5; height: 100%; transition: width 0.5s; }
+        .leaderboard-item { border-bottom: 1px solid #444; }
+        .shimmer { animation: shimmer 2s infinite linear; background: linear-gradient(to right, #2c2c2c 0%, #444 50%, #2c2c2c 100%); background-size: 200% 100%; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .neumorphic { background: #1e1e1e; border-radius: 12px; box-shadow: 4px 4px 8px #0f0f0f, -4px -4px 8px #2d2d2d; }
+        .liquid-glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 8px 32px rgba(0,0,0,0.37); }
+        .premium-user { color: gold; text-shadow: 0 0 5px gold; }
+        .verified-user { color: yellow; text-shadow: 0 0 5px yellow; }
+        .diamond-user { color: purple; text-shadow: 0 0 5px purple; }
+        .premium-frame { border-color: gold; animation: glow-gold 1s infinite; }
+        @keyframes glow-gold { 0% { box-shadow: 0 0 5px gold; } 50% { box-shadow: 0 0 20px gold; } 100% { box-shadow: 0 0 5px gold; } }
+        .diamond-frame { border-color: purple; animation: glow-purple 1s infinite; }
+        @keyframes glow-purple { 0% { box-shadow: 0 0 5px purple; } 50% { box-shadow: 0 0 20px purple; } 100% { box-shadow: 0 0 5px purple; } }
+        .verified-frame { border-color: yellow; animation: glow-yellow 1s infinite; }
+        @keyframes glow-yellow { 0% { box-shadow: 0 0 5px yellow; } 50% { box-shadow: 0 0 20px yellow; } 100% { box-shadow: 0 0 5px yellow; } }
+        @keyframes fall { 0% { top: -10px; opacity: 1; transform: rotate(0deg); } 100% { top: 100vh; opacity: 0; transform: rotate(360deg); } }
     </style>
 </head>
-<body class="max-w-md mx-auto">
+<body class="max-w-md mx-auto dynamic-bg">
 
     <!-- App Loader -->
     <div id="loader" class="hidden fixed inset-0 dark-bg bg-opacity-75 flex items-center justify-center z-50">
@@ -44,7 +101,7 @@
     </div>
 
     <!-- Authentication Section -->
-    <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page">
+    <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page glassmorphism glossy">
         <h1 class="text-4xl font-bold text-center mb-2 text-accent">Daily Earning</h1>
         <p class="text-center text-gray-400 mb-8">Login or Signup to continue</p>
         <div id="auth-container">
@@ -55,7 +112,7 @@
                 <p class="text-center text-gray-400">Don't have an account? <a href="#" id="show-signup" class="font-semibold text-accent">Sign Up</a></p>
             </div>
             <div id="signup-view" class="hidden">
-                 <input id="signup-name" type="text" placeholder="Full Name" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-name" type="text" placeholder="Full Name" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
                 <button id="signup-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Sign Up</button>
@@ -66,7 +123,7 @@
 
     <!-- Main App Container -->
     <div id="app-container" class="min-h-screen flex-col main-page">
-        <header class="flex items-center justify-between p-4 sticky top-0 bg-opacity-80 backdrop-blur-md z-10 dark-bg">
+        <header class="flex items-center justify-between p-4 sticky top-0 bg-opacity-80 backdrop-blur-md z-10 dark-bg glassmorphism glossy">
             <h1 class="text-xl font-bold">Daily Earning</h1>
             <div class="flex items-center space-x-4">
                 <div id="notification-bell" class="relative cursor-pointer">
@@ -79,14 +136,29 @@
 
         <main class="flex-grow">
             <!-- Home Page -->
-            <div id="home-page" class="p-4 space-y-6 sub-page">
-                <div class="card-bg p-4 rounded-lg flex items-center justify-between">
+            <div id="home-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
+                <div class="card-bg p-4 rounded-lg flex items-center justify-between glassmorphism glossy">
                     <div>
                         <p class="text-gray-400 text-sm">Your Balance</p>
-                        <p class="text-3xl font-bold"><span id="coin-balance">0</span> Coins</p>
+                        <p class="text-3xl font-bold"><span id="coin-balance" class="glow shimmer">0</span> Coins</p>
                     </div>
                     <button id="home-withdraw-btn" class="bg-white text-black font-semibold px-6 py-2 rounded-lg">Withdraw</button>
                 </div>
+                <div class="card-bg p-4 rounded-lg text-center glassmorphism glossy" style="font-size: 0.8rem;">
+                    <p id="current-date-time"></p>
+                </div>
+                <section class="glassmorphism glossy p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">Streak Progress</h2>
+                    <div class="progress-bar h-4 mb-4">
+                        <div id="streak-fill" class="progress-fill w-0 streak-bar"></div>
+                    </div>
+                    <h2 class="text-lg font-semibold mb-2">Task Completion Progress</h2>
+                    <div class="progress-bar h-4 mb-4">
+                        <div id="task-progress-fill" class="progress-fill w-0"></div>
+                    </div>
+                    <h2 class="text-lg font-semibold mb-2">Countdown to Next Bonus</h2>
+                    <p id="countdown-timer" class="text-center text-accent">6:00:00</p>
+                </section>
                 <section>
                     <div class="flex justify-between items-center">
                         <div>
@@ -96,145 +168,234 @@
                         <p class="text-sm text-gray-400">Ads Left: <span id="ads-left-count">...</span></p>
                     </div>
                     <div class="space-y-3">
-                        <div class="bg-orange-500 p-3 rounded-lg flex items-center justify-between text-black">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">🚀 Watch Ad & Earn</h3><p class="text-xs font-medium">Rewarded Interstitial</p></div></div>
-                            <button class="bg-white text-orange-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
+                        <div class="bg-blue-500 p-3 rounded-lg flex items-center justify-between text-white glassmorphism glossy">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs font-medium">Rewarded Interstitial</p></div></div>
+                            <button class="bg-white text-blue-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
                         </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">💵</span><div><h3 class="font-semibold">🎯 Watch Ad & Earn</h3><p class="text-xs text-gray-400">Rewarded Popup</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">Start</button>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 15 coins</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
                         </div>
-                         <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">💰</span><div><h3 class="font-semibold">💎 watch Ad & Earn</h3><p class="text-xs text-gray-400">Earn rewards</p></div></div>
-                            <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">Start</button>
-                        </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">🎮</span><div><h3 class="font-semibold">Play Mini App</h3><p class="text-xs text-gray-400">Get a big reward!</p></div></div>
-                            <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">Play</button>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">30 coin bonus</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="watchThreeAds()">Start</button>
                         </div>
                     </div>
+                </section>
+                <section class="glassmorphism glossy p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">Earnings Summary</h2>
+                    <ul>
+                        <li>👁 Ads Watched: <span id="home-ads-watched">0</span></li>
+                        <li>🕹 Games Played: <span id="home-games-played">0</span></li>
+                        <li>🎁 Referrals: <span id="home-referrals-count">0</span></li>
+                        <li>💰 Total Earned Coins: <span id="home-total-earned">0</span></li>
+                        <li>💸 Withdrawals: <span id="home-withdrawals-count">0</span></li>
+                    </ul>
+                </section>
+                <section class="glassmorphism glossy p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">📈 Leaderboard - Top Earners</h2>
+                    <div id="home-leaderboard" class="space-y-2"></div>
+                </section>
+            </div>
+
+            <!-- Task Page -->
+            <div id="task-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
+                <section class="glassmorphism glossy p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">Task Completion Progress</h2>
+                    <div class="progress-bar h-4 mb-4">
+                        <div id="task-progress-fill" class="progress-fill w-0"></div>
+                    </div>
+                    <h2 class="text-lg font-semibold mb-2">⏳ Countdown to Next Bonus</h2>
+                    <p id="task-countdown-timer" class="text-center text-accent">24:00:00</p>
+                </section>
+                <section>
+                    <h2 class="text-lg font-semibold">🔧 Tasks</h2>
+                    <p class="text-sm text-gray-400 mb-4">Complete tasks to earn rewards.</p>
+                    <div class="space-y-3">
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs text-gray-400">Rewarded</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 15 coins</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">30 coin bonus</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="watchThreeAds()">Start</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs text-gray-400">Alternative Ad</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('alternativeAd')">Start</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🧲</span><div><h3 class="font-semibold">Ad Multiplier (x2)</h3><p class="text-xs text-gray-400">Double coins</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="adMultiplier()">Start</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🎮</span><div><h3 class="font-semibold">Play Mini App</h3><p class="text-xs text-gray-400">Big reward</p></div></div>
+                            <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">Play</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">💰</span><div><h3 class="font-semibold">Watch Ad & Earn</h3><p class="text-xs text-gray-400">In-App</p></div></div>
+                            <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">Start</button>
+                        </div>
+                        <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
+                            <div class="flex items-center space-x-3"><span class="text-3xl">💵</span><div><h3 class="font-semibold">Watch Ad & Earn</h3><p class="text-xs text-gray-400">Popup</p></div></div>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">Start</button>
+                        </div>
+                    </div>
+                </section>
+                <section class="glassmorphism glossy p-4 rounded-lg">
+                    <h2 class="text-lg font-semibold mb-2">📊 Coin History</h2>
+                    <div id="task-coin-history-list" class="space-y-2"></div>
                 </section>
             </div>
 
             <!-- Wallet Page -->
-            <div id="wallet-page" class="p-4 space-y-6 sub-page">
+            <div id="wallet-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
                 <h2 class="text-xl font-bold text-center">My Wallet</h2>
-                <div class="card-bg p-4 rounded-lg">
+                <div class="card-bg p-4 rounded-lg glassmorphism glossy">
                     <h3 class="font-semibold mb-3">Withdraw Earnings</h3>
-                    <p class="text-sm text-gray-400 mb-1">Current Balance: <span class="font-bold text-accent"><span id="wallet-coin-balance">0</span> Coins</span></p>
+                    <p class="text-sm text-gray-400 mb-1">Current Balance: <span class="font-bold text-accent"><span id="wallet-coin-balance" class="glow">0</span> Coins</span></p>
                     <p class="text-sm text-gray-400 mb-2">Minimum Withdrawal: <span id="min-withdrawal-info">...</span> Coins</p>
                     <p class="text-sm text-gray-400 mb-4 font-semibold" id="coin-value-info">...</p>
                     <input id="withdraw-amount" type="number" placeholder="Enter coin amount" class="w-full p-3 rounded-lg input-field mb-3">
-                    <select id="withdraw-method" class="w-full p-3 rounded-lg input-field mb-3"></select>
+                    <select id="withdraw-method" class="w-full p-3 rounded-lg input-field mb-3">
+                        <option value="bKash">🟦 bKash</option>
+                        <option value="Nagad">🟩 Nagad</option>
+                        <option value="Rocket">🟪 Rocket</option>
+                        <option value="Bank Transfer">🟨 Bank Transfer</option>
+                    </select>
                     <div id="payment-details-container"></div>
                     <button id="withdraw-btn" class="w-full p-3 rounded-lg btn-accent mt-3">Request Withdrawal</button>
+                    <div class="mt-4 text-sm text-gray-400">
+                        <p>📅 Next eligible withdrawal: In 2 days</p>
+                        <p>🔁 You can withdraw every 7 days</p>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-400">
+                        <p>🔒 আপনার একাউন্ট নিরাপদ রাখতে সঠিক নাম্বার ব্যবহার করুন। ভুল নাম্বারে টাকা ফেরত পাওয়া যাবে না।</p>
+                        <p>🔒 উইথড্র পেন্ডিং থাকা অবস্থায় উইথড্র দিতে পারবেন না তাহলে টাকা পাবেন না</p>
+                    </div>
                 </div>
                 <div>
                     <h3 class="text-lg font-semibold mb-3">Withdrawal History</h3>
+                    <select id="history-filter" class="w-full p-3 rounded-lg input-field mb-3">
+                        <option value="all">All</option>
+                        <option value="pending">🔄 Pending</option>
+                        <option value="approved">✅ Approved</option>
+                        <option value="rejected">❌ Rejected</option>
+                    </select>
                     <div id="withdrawal-history-list" class="space-y-3"></div>
                 </div>
             </div>
 
             <!-- Refer Page -->
-            <div id="refer-page" class="p-4 space-y-6 sub-page">
-    <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
-    <div class="card-bg p-6 rounded-lg text-center">
-        <p class="text-gray-400 mb-2">Your Referral Code</p>
-        <div class="bg-gray-800 p-3 rounded-lg flex items-center justify-center mb-4">
-            <span id="referral-code" class="text-2xl font-bold tracking-widest">ABC123</span>
-            <button id="copy-code-btn" class="ml-4">
-                <i data-lucide="copy" class="w-6 h-6 text-gray-400"></i>
-            </button>
-        </div>
-        <p class="text-sm text-gray-300">Share the code with your friends.</p>
-    </div>
-    <button id="share-btn" class="w-full p-3 rounded-lg btn-accent">Share Your Code</button>
-    <div class="card-bg p-4 rounded-lg mt-6">
-        <h3 class="font-semibold mb-3 text-center">Have a Referral Code?</h3>
-        <input id="enter-referral-code" type="text" placeholder="Enter code here" class="w-full p-3 rounded-lg input-field mb-3">
-        <button id="apply-referral-btn" class="w-full p-3 rounded-lg btn-outline-accent">Apply Code</button>
-    </div>
-</div>
+            <div id="refer-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
+                <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
+                <div class="card-bg p-8 rounded-2xl shadow-lg glassmorphism glossy">
+                    <div class="flex items-center justify-center mb-2">
+                        <i data-lucide="link" class="w-5 h-5 mr-2 text-accent"></i>
+                        <p class="text-gray-300 font-bold">Your Referral Link</p>
+                    </div>
+                    <div class="relative bg-gray-800 p-3 rounded-xl flex items-center justify-between mb-4">
+                        <input id="referral-code" type="text" value="https://t.me/addincome00_bot?start=ABC123" class="w-full bg-transparent text-white text-lg font-semibold tracking-widest focus:outline-none" readonly>
+                        <button id="copy-code-btn" class="ml-4">
+                            <i data-lucide="copy" class="w-6 h-6 text-gray-400"></i>
+                        </button>
+                    </div>
+                    <p class="text-sm text-gray-300 text-center">Share the link with your friends.</p>
+                    <div class="mt-4 text-sm text-gray-300">
+                        <h3 class="font-semibold mb-2">🎁 Referral Bonus Breakdown</h3>
+                        <p>✅ You will earn: 50 Coins</p>
+                        <p>👥 Your friend will get: 25 Coins as welcome bonus</p>
+                    </div>
+                </div>
+                <button id="share-btn" class="w-full p-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold hover:scale-105 hover:shadow-lg transition">Share Your Link</button>
+                <div class="flex justify-center space-x-4 social-icons">
+                    <a href="#" id="share-telegram" class="text-accent"><i data-lucide="send" class="w-6 h-6"></i></a>
+                    <a href="#" id="share-whatsapp" class="text-green-400"><i data-lucide="message-circle" class="w-6 h-6"></i></a>
+                    <a href="#" id="share-facebook" class="text-blue-500"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                    <a href="#" id="share-twitter" class="text-blue-400"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    <a href="#" id="share-copy" class="text-white"><i data-lucide="copy" class="w-6 h-6"></i></a>
+                    <a href="#" id="share-qr" class="text-white"><i data-lucide="qrcode" class="w-6 h-6"></i></a>
+                </div>
+                <p class="text-sm text-gray-300 text-center">Invite friends & earn rewards instantly!</p>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold mb-3">🧑‍🤝‍🧑 Referral Leaderboard (Top 5 Weekly)</h3>
+                    <div id="referral-leaderboard" class="space-y-2"></div>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold mb-3">🕓 Refer and Earn History</h3>
+                    <div id="refer-history-list" class="space-y-2"></div>
+                </div>
+                <p class="text-sm text-gray-300 text-center">🛡️ Fake or duplicate referrals may result in reward removal.</p>
+                <div class="mt-4">
+                    <textarea id="custom-invite-msg" class="w-full p-3 rounded-lg input-field" placeholder="Hey! Join this app and earn real money by just watching ads! Use my link & get bonus 🎁"></textarea>
+                    <button id="custom-share-btn" class="w-full p-3 rounded-lg btn-accent mt-2">Share Custom Message</button>
+                </div>
+            </div>
 
-<script>
-    const copyBtn = document.getElementById("copy-code-btn");
-    const referralCode = document.getElementById("referral-code");
-    const shareBtn = document.getElementById("share-btn");
-    
-    // Copy code button
-    copyBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(referralCode.textContent).then(() => {
-            alert("Referral code copied!");
-        });
-    });
-
-    // Share button
-    shareBtn.addEventListener("click", () => {
-        const code = referralCode.textContent.clipboard.writetext.;
-        const link = `https://t.me/addincome00_bot?start=${code}`;
-
-        // যদি mobile device এ হয়, সরাসরি share API ব্যবহার করা যাবে
-        if (navigator.share) {
-            navigator.share({
-                title: "Join me on Daily Earning Bot",
-                text: "Use my referral code and join!",
-                url: link
-            }).catch(console.error);
-        } else {
-            // fallback: শুধু লিংক কপি হবে
-            navigator.clipboard.writeText(link).then(() => {
-                alert("Referral link copied: " + link);
-            });
-        }
-    });
-</script>
-            
             <!-- Profile Page -->
-             <div id="profile-page" class="p-4 space-y-6 sub-page bg-[#0f172a] min-h-screen text-white">
-    <!-- Title -->
-    <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
-
-    <!-- Profile Info Card -->
-    <div class="bg-[#1e293b] p-6 rounded-xl shadow-lg">
-        <div class="flex flex-col items-center mb-6">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/063/477/529/small/neutral-gray-silhouette-of-male-avatar-defoult-photo-placeholder-with-short-hair-for-anonymous-profile-picture-with-minimalist-style-suitable-for-various-social-media-platforms-and-websites-vector.jpg" class="rounded-full border-2 border-gray-600 mb-3">
-                  <p id="profile-name" class="font-semibold">Username:</p>
-        </div>
-
-        <!-- Details -->
-        <div class="space-y-3 text-sm">
-            <div class="bg-[#0f172a] p-3 rounded-lg">
-                
-                <p id="profile-email" class="text-gray-300"></p>
+            <div id="profile-page" class="p-4 space-y-6 sub-page glassmorphism glossy neumorphic">
+                <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
+                <div class="bg-[#1e293b] p-6 rounded-xl shadow-lg glassmorphism glossy neumorphic">
+                    <div class="flex flex-col items-center mb-6">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/063/477/529/small/neutral-gray-silhouette-of-male-avatar-defoult-photo-placeholder-with-short-hair-for-anonymous-profile-picture-with-minimalist-style-suitable-for-various-social-media-platforms-and-websites-vector.jpg" class="rounded-full border-2 border-gray-600 mb-3 shimmer" id="profile-avatar">
+                        <p id="profile-name" class="font-semibold">Username:</p>
+                        <span id="membership-badge" class="text-sm text-green-400">🟢 Free Member</span>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-[#0f172a] p-3 rounded-lg glassmorphism glossy">
+                            <p id="profile-email" class="text-gray-300"></p>
+                        </div>
+                        <div class="bg-[#0f172a] p-3 rounded-lg glassmorphism glossy">
+                            <p class="font-semibold">Coins:</p>
+                            <p id="coin-balances" class="text-yellow-400 glow"></p>
+                        </div>
+                        <div class="bg-[#0f172a] p-3 rounded-lg glassmorphism glossy">
+                            <h3 class="font-semibold mb-2">Earnings Summary</h3>
+                            <ul>
+                                <li>👁 Ads Watched: <span id="ads-watched">0</span></li>
+                                <li>🕹 Games Played: <span id="games-played">0</span></li>
+                                <li>🎁 Referrals: <span id="referrals-count">0</span></li>
+                                <li>💰 Total Earned Coins: <span id="total-earned">0</span></li>
+                                <li>💸 Withdrawals: <span id="withdrawals-count">0</span></li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#0f172a] p-3 rounded-lg text-gray-400 text-xs glassmorphism glossy">
+                            <p>
+                                Note: This is our trusted free income Telegram bot, here you will get 
+                                <span class="text-green-400 font-semibold">100% withdrawal payment</span> by working.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="font-semibold mb-2">🛎️ Notification Settings</h3>
+                        <label><input type="checkbox" checked> Get coin updates</label><br>
+                        <label><input type="checkbox" checked> Withdrawal alerts</label><br>
+                        <label><input type="checkbox"> New offers</label>
+                    </div>
+                    <a href="https://t.me/dailyearningsupport" class="block w-full mt-4 p-3 rounded-lg btn-outline-accent text-center">🆘 ❓ Need Help? Contact Us</a>
+                    <div class="mt-4 text-sm text-gray-400">
+                        <p>🧾 Last Login: <span id="last-login">N/A</span></p>
+                    </div>
+                    <button id="logout-btn" class="w-full mt-6 p-3 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition glassmorphism glossy neumorphic">
+                        Logout
+                    </button>
+                </div>
             </div>
-            <div class="bg-[#0f172a] p-3 rounded-lg">
-                <p class="font-semibold">Coins:</p>
-                <p id="coin-balances" class="text-yellow-400"></p>
-            </div>
-            <div class="bg-[#0f172a] p-3 rounded-lg text-gray-400 text-xs">
-                <p>
-                    Note: This is our trusted free income Telegram bot, here you will get 
-                    <span class="text-green-400 font-semibold">100% withdrawal payment</span> by working.
-                </p>
-            </div>
-        </div>
-
-        <!-- Logout Button -->
-        <button id="logout-btn" class="w-full mt-6 p-3 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition">
-            Logout
-        </button>
-    </div>
-</div>
             
             <!-- Notifications Page -->
-            <div id="notifications-page" class="p-4 space-y-4 sub-page">
+            <div id="notifications-page" class="p-4 space-y-4 sub-page glassmorphism glossy">
                 <h2 class="text-xl font-bold text-center">Notifications</h2>
                 <div id="notifications-list" class="space-y-3"></div>
             </div>
         </main>
 
-        <nav class="bottom-nav sticky bottom-0 grid grid-cols-4 items-center text-center py-2 card-bg">
+        <nav class="bottom-nav sticky bottom-0 grid grid-cols-5 items-center text-center py-2 card-bg glassmorphism glossy">
             <a href="#" class="nav-link" data-page="home-page"><i data-lucide="home" class="mx-auto w-6 h-6"></i><span class="text-xs">Home</span></a>
+            <a href="#" class="nav-link" data-page="task-page"><i data-lucide="check-circle" class="mx-auto w-6 h-6"></i><span class="text-xs">Tasks</span></a>
             <a href="#" class="nav-link" data-page="wallet-page"><i data-lucide="wallet" class="mx-auto w-6 h-6"></i><span class="text-xs">Wallet</span></a>
             <a href="#" class="nav-link" data-page="refer-page"><i data-lucide="users" class="mx-auto w-6 h-6"></i><span class="text-xs">Refer & Earn</span></a>
             <a href="#" class="nav-link" data-page="profile-page"><i data-lucide="user" class="mx-auto w-6 h-6"></i><span class="text-xs">Profile</span></a>
@@ -242,27 +403,45 @@
     </div>
     
     <div id="custom-alert" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center">
+        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
             <p id="alert-message" class="mb-4"></p>
             <button id="alert-ok-btn" class="btn-accent px-6 py-2 rounded-lg">OK</button>
         </div>
     </div>
 
+    <div id="success-animation" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="text-6xl animate-bounce">🎉</div>
+    </div>
+
+    <div id="qr-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
+            <div id="qr-code" class="mb-4"></div>
+            <button onclick="document.getElementById('qr-modal').classList.add('hidden')" class="btn-accent px-6 py-2 rounded-lg">Close</button>
+        </div>
+    </div>
+
+    <div id="notification-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
+            <h3 id="notification-title" class="font-bold mb-2"></h3>
+            <p id="notification-message" class="mb-4"></p>
+            <button onclick="document.getElementById('notification-popup').classList.add('hidden')" class="btn-accent px-6 py-2 rounded-lg">OK</button>
+        </div>
+    </div>
+
     <script type="module">
         const firebaseConfig = {
-         apiKey: "AIzaSyDS0Hn3K0_2lMtGnwPUFOjcm5jdqIVAygk",
-         authDomain: "daily-earning-86edf.firebaseapp.com",
-         databaseURL: "https://daily-earning-86edf-default-rtdb.firebaseio.com",
-         projectId: "daily-earning-86edf",
-         storageBucket: "daily-earning-86edf.firebasestorage.app",
-         messagingSenderId: "807306218142",
-         appId: "1:807306218142:web:efae2c7fe4e410dc81498f",
-          measurementId: "G-R9Q665TBGV"
-        };
+  apiKey: "AIzaSyDztMlC9va4oj3j1lcZj0Q5VFEzhRT2cbQ",
+  authDomain: "daily-earning-bd.firebaseapp.com",
+  databaseURL: "https://daily-earning-bd-default-rtdb.firebaseio.com",
+  projectId: "daily-earning-bd",
+  storageBucket: "daily-earning-bd.firebasestorage.app",
+  messagingSenderId: "250139818902",
+  appId: "1:250139818902:web:86437b289b90aa3e47fbb7"
+};
         
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, limit, Timestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -285,6 +464,31 @@
         const notificationDot = document.getElementById('notification-dot');
         const adsLeftCountEl = document.getElementById('ads-left-count');
         const paymentDetailsContainer = document.getElementById('payment-details-container');
+        const streakFill = document.getElementById('streak-fill');
+        const taskProgressFill = document.getElementById('task-progress-fill');
+        const countdownTimer = document.getElementById('countdown-timer');
+        const coinHistoryList = document.getElementById('coin-history-list');
+        const historyFilter = document.getElementById('history-filter');
+        const referralLeaderboard = document.getElementById('referral-leaderboard');
+        const referHistoryList = document.getElementById('refer-history-list');
+        const customInviteMsg = document.getElementById('custom-invite-msg');
+        const adsWatchedEl = document.getElementById('ads-watched');
+        const gamesPlayedEl = document.getElementById('games-played');
+        const referralsCountEl = document.getElementById('referrals-count');
+        const totalEarnedEl = document.getElementById('total-earned');
+        const withdrawalsCountEl = document.getElementById('withdrawals-count');
+        const membershipBadge = document.getElementById('membership-badge');
+        const lastLoginEl = document.getElementById('last-login');
+        const successAnimation = document.getElementById('success-animation');
+        const homeAdsWatched = document.getElementById('home-ads-watched');
+        const homeGamesPlayed = document.getElementById('home-games-played');
+        const homeReferralsCount = document.getElementById('home-referrals-count');
+        const homeTotalEarned = document.getElementById('home-total-earned');
+        const homeWithdrawalsCount = document.getElementById('home-withdrawals-count');
+        const homeLeaderboard = document.getElementById('home-leaderboard');
+        const profileAvatar = document.getElementById('profile-avatar');
+        const taskCoinHistoryList = document.getElementById('task-coin-history-list');
+        const taskCountdownTimer = document.getElementById('task-countdown-timer');
 
         window.onload = () => {
             lucide.createIcons();
@@ -292,54 +496,110 @@
             showMainPage('auth-section');
             loader.style.display = 'none';
             onAuthStateChanged(auth, handleAuthStateChange);
+            setInterval(() => {
+                document.getElementById('current-date-time').textContent = new Date().toLocaleString();
+            }, 1000);
         };
 
         async function handleAuthStateChange(user) {
-            if (user) {
-                loader.style.display = 'flex';
-                currentUser = user;
-                await fetchUserData();
-                if (userData.isBlocked) {
-                    showAlert("Your account has been blocked.");
-                    await signOut(auth);
-                    loader.style.display = 'none';
-                    return;
+            loader.style.display = 'flex';
+            try {
+                if (user) {
+                    currentUser = user;
+                    await fetchUserData();
+                    if (!userData) {
+                        showAlert("Failed to load user data. Please try logging in again.");
+                        await signOut(auth);
+                        return;
+                    }
+                    if (userData.isBlocked) {
+                        showAlert("Your account has been blocked.");
+                        await signOut(auth);
+                        return;
+                    }
+                    await fetchAppConfig();
+                    await checkNewNotifications();
+                    if (userData.referredBy) {
+                        await applyReferralBonus(userData.referredBy);
+                    }
+                    updateUI();
+                    showMainPage('app-container');
+                    navigateTo('home-page');
+                    startCountdown();
+                    loadCoinHistory();
+                    loadReferralLeaderboard();
+                    loadReferHistory();
+                    loadEarningsSummary();
+                    loadLastLogin();
+                    loadHomeLeaderboard();
+                } else {
+                    currentUser = null;
+                    userData = null;
+                    showMainPage('auth-section');
                 }
-                await fetchAppConfig();
-                await checkNewNotifications();
-                updateUI();
-                showMainPage('app-container');
-                navigateTo('home-page');
+            } catch (error) {
+                console.error("Error in auth state change:", error);
+                showAlert("An error occurred during authentication. Please try again.");
+            } finally {
                 loader.style.display = 'none';
-            } else {
-                currentUser = null;
-                userData = null;
-                showMainPage('auth-section');
             }
         }
 
         async function fetchUserData() {
-            if (!currentUser) return;
+            console.log("Fetching user data for UID:", currentUser?.uid);
+            if (!currentUser) {
+                console.error("No authenticated user found.");
+                showAlert("No authenticated user found. Please log in again.");
+                return;
+            }
             const userRef = doc(db, "users", currentUser.uid);
+            console.log("Querying Firestore for user document:", userRef.path);
             try {
                 const userSnap = await getDoc(userRef);
+                console.log("User document exists:", userSnap.exists());
                 if (userSnap.exists()) {
                     userData = userSnap.data();
+                    console.log("User data retrieved:", userData);
                 } else {
+                    console.log("Creating new user document...");
                     const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                     const defaultUserData = {
-                        uid: currentUser.uid, name: currentUser.displayName || currentUser.email.split('@')[0], email: currentUser.email,
-                        balance: 10, referralCode: ownReferralCode, referredBy: null,
-                        lastNotificationCheck: new Date(),
+                        uid: currentUser.uid,
+                        name: currentUser.displayName || currentUser.email.split('@')[0],
+                        email: currentUser.email,
+                        balance: 10,
+                        referralCode: ownReferralCode,
+                        referredBy: null,
+                        lastNotificationCheck: serverTimestamp(),
                         createdAt: serverTimestamp(),
-                        dailyAdCount: 0, lastAdWatchDate: new Date().toISOString().split('T')[0], isBlocked: false
+                        dailyAdCount: 0,
+                        lastAdWatchDate: new Date().toISOString().split('T')[0],
+                        isBlocked: false,
+                        streak: 0,
+                        actionsCount: 0,
+                        adsWatched: 0,
+                        gamesPlayed: 0,
+                        referrals: 0,
+                        totalEarned: 0,
+                        withdrawals: 0,
+                        membership: 'free',
+                        lastLogin: serverTimestamp(),
+                        coinHistory: []
                     };
                     await setDoc(userRef, defaultUserData);
                     userData = defaultUserData;
+                    console.log("New user document created:", userData);
+                }
+                // Update streak
+                const today = new Date().toDateString();
+                const lastLoginDate = userData.lastLogin ? userData.lastLogin.toDate().toDateString() : null;
+                if (lastLoginDate !== today) {
+                    userData.streak = (userData.streak || 0) + 1;
+                    await updateDoc(userRef, { streak: userData.streak, lastLogin: serverTimestamp() });
                 }
             } catch (error) {
-                console.error("Error fetching user data:", error);
-                showAlert("Error loading user data.");
+                console.error("Error fetching user data:", error.code, error.message, error.stack);
+                showAlert(`Failed to load user data: ${error.message}`);
             }
         }
 
@@ -347,7 +607,15 @@
             const configRef = doc(db, "config", "main");
             try {
                 const configSnap = await getDoc(configRef);
-                appConfig = configSnap.exists() ? configSnap.data() : { minWithdrawal: 5000, paymentMethods: ["UPI", "bKash"], dailyAdLimit: 10, coinValueCoins: 1000, coinValueInr: 10 };
+                appConfig = configSnap.exists() ? configSnap.data() : {
+                    minWithdrawal: 5000,
+                    paymentMethods: ["bKash", "Nagad", "Rocket", "Bank Transfer"],
+                    dailyAdLimit: 10,
+                    dailySpinLimit: 5,
+                    spinCooldown: 7200, // 2 hours in seconds
+                    coinValueCoins: 1000,
+                    coinValueInr: 10
+                };
             } catch (error) {
                 console.error("Error fetching app config:", error);
             }
@@ -361,18 +629,40 @@
             ProfileCoinBalanceE1.textContent = balance;
             profileNameEl.textContent = userData.name || 'No Name';
             profileEmailEl.textContent = userData.email || 'No Email';
-            referralCodeEl.textContent = userData.referralCode || '...';
+            referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
             coinValueInfoEl.textContent = `${appConfig.coinValueCoins || 1000} Coins = ৳ ${appConfig.coinValueInr || 10}`;
             withdrawMethodSelect.innerHTML = '';
             (appConfig.paymentMethods || []).forEach(method => {
+                let icon = '';
+                if (method === 'bKash') icon = '🟦 ';
+                if (method === 'Nagad') icon = '🟩 ';
+                if (method === 'Rocket') icon = '🟪 ';
+                if (method === 'Bank Transfer') icon = '🟨 ';
                 const option = document.createElement('option');
                 option.value = method;
-                option.textContent = method;
+                option.textContent = icon + method;
                 withdrawMethodSelect.appendChild(option);
             });
             updateDynamicPaymentFields();
             updateAdsLeftCount();
+            streakFill.style.width = `${Math.min(userData.streak * 10, 100)}%`; // Example: 10% per day streak
+            taskProgressFill.style.width = `${(userData.dailyAdCount / 300) * 100}%`;
+            if (userData.membership === 'free') {
+                membershipBadge.textContent = '🟢 Free Member';
+                membershipBadge.className = 'text-sm text-green-400';
+            } else if (userData.membership === 'verified') {
+                membershipBadge.textContent = '🟢 Verified';
+                membershipBadge.className = 'text-sm text-blue-400';
+            } else if (userData.membership === 'premium') {
+                membershipBadge.textContent = '✨ Premium';
+                membershipBadge.className = 'text-sm text-yellow-400';
+            } else if (userData.membership === 'diamond') {
+                membershipBadge.textContent = '💎 Diamond';
+                membershipBadge.className = 'text-sm text-purple-400';
+            }
+            profileAvatar.classList.add(`${userData.membership}-frame`);
+            loadEarningsSummary();
         }
 
         function updateAdsLeftCount() {
@@ -389,6 +679,9 @@
             let placeholder = "Enter your Number";
             if (selectedMethod.includes('upi')) placeholder = "Enter your UPI ID";
             if (selectedMethod.includes('bkash')) placeholder = "Enter your bKash Number";
+            if (selectedMethod.includes('nagad')) placeholder = "Enter your Nagad Number";
+            if (selectedMethod.includes('rocket')) placeholder = "Enter your Rocket Number";
+            if (selectedMethod.includes('bank')) placeholder = "Enter your Bank Details";
             paymentDetailsContainer.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-lg input-field">`;
         }
 
@@ -404,12 +697,28 @@
                 link.classList.remove('active', 'text-accent');
                 if (link.dataset.page === pageId) link.classList.add('active', 'text-accent');
             });
+            if (pageId === 'wallet-page') loadWithdrawalHistory();
+            if (pageId === 'refer-page') loadReferralLeaderboard();
+            if (pageId === 'profile-page') loadEarningsSummary();
+            if (pageId === 'home-page') {
+                loadEarningsSummary();
+                loadHomeLeaderboard();
+            }
+            if (pageId === 'task-page') loadCoinHistory('task-coin-history-list');
         }
         window.navigateTo = navigateTo;
 
         function setupEventListeners() {
-            document.getElementById('show-signup').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('login-view').classList.add('hidden'); document.getElementById('signup-view').classList.remove('hidden'); });
-            document.getElementById('show-login').addEventListener('click', (e) => { e.preventDefault(); document.getElementById('signup-view').classList.add('hidden'); document.getElementById('login-view').classList.remove('hidden'); });
+            document.getElementById('show-signup').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('login-view').classList.add('hidden');
+                document.getElementById('signup-view').classList.remove('hidden');
+            });
+            document.getElementById('show-login').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('signup-view').classList.add('hidden');
+                document.getElementById('login-view').classList.remove('hidden');
+            });
             document.getElementById('signup-btn').addEventListener('click', handleSignup);
             document.getElementById('login-btn').addEventListener('click', handleLogin);
             document.getElementById('logout-btn').addEventListener('click', handleLogout);
@@ -417,17 +726,29 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const pageId = link.dataset.page;
-                    if (pageId === 'wallet-page') loadWithdrawalHistory();
                     navigateTo(pageId);
                 });
             });
-            document.getElementById('notification-bell').addEventListener('click', () => { navigateTo('notifications-page'); loadNotifications(); });
+            document.getElementById('notification-bell').addEventListener('click', () => {
+                navigateTo('notifications-page');
+                loadNotifications();
+            });
             document.getElementById('copy-code-btn').addEventListener('click', copyReferralCode);
             document.getElementById('share-btn').addEventListener('click', shareReferralCode);
+            document.getElementById('share-telegram').addEventListener('click', () => shareSocial('telegram'));
+            document.getElementById('share-whatsapp').addEventListener('click', () => shareSocial('whatsapp'));
+            document.getElementById('share-facebook').addEventListener('click', () => shareSocial('facebook'));
+            document.getElementById('share-twitter').addEventListener('click', () => shareSocial('twitter'));
+            document.getElementById('share-copy').addEventListener('click', copyReferralCode);
+            document.getElementById('share-qr').addEventListener('click', () => {
+                document.getElementById('qr-modal').classList.remove('hidden');
+                new QRCode(document.getElementById("qr-code"), referralCodeEl.value);
+            });
             document.getElementById('withdraw-btn').addEventListener('click', handleWithdrawal);
             document.getElementById('home-withdraw-btn').addEventListener('click', () => navigateTo('wallet-page'));
-            document.getElementById('apply-referral-btn').addEventListener('click', handleApplyReferralCode);
             withdrawMethodSelect.addEventListener('change', updateDynamicPaymentFields);
+            historyFilter.addEventListener('change', loadWithdrawalHistory);
+            document.getElementById('custom-share-btn').addEventListener('click', shareCustomMessage);
         }
 
         async function handleSignup() {
@@ -461,7 +782,9 @@
             }
         }
 
-        async function handleLogout() { await signOut(auth); }
+        async function handleLogout() {
+            await signOut(auth);
+        }
         
         async function checkNewNotifications() {
             const lastCheck = userData.lastNotificationCheck;
@@ -472,6 +795,16 @@
             const q = query(collection(db, "notifications"), where("createdAt", ">", lastCheck), limit(1));
             const querySnapshot = await getDocs(q);
             notificationDot.style.display = querySnapshot.empty ? 'none' : 'block';
+            if (!querySnapshot.empty) {
+                const latest = querySnapshot.docs[0].data();
+                showNotificationPopup(latest.title, latest.message);
+            }
+        }
+
+        function showNotificationPopup(title, message) {
+            document.getElementById('notification-title').textContent = title;
+            document.getElementById('notification-message').textContent = message;
+            document.getElementById('notification-popup').classList.remove('hidden');
         }
 
         async function loadNotifications() {
@@ -489,7 +822,7 @@
                 querySnapshot.forEach(doc => {
                     const msg = doc.data();
                     const date = msg.createdAt ? msg.createdAt.toDate().toLocaleDateString() : 'N/A';
-                    listEl.innerHTML += `<div class="card-bg p-4 rounded-lg"><div class="flex justify-between items-center mb-1"><h3 class="font-bold">${msg.title}</h3><p class="text-xs text-gray-400">${date}</p></div><p class="text-sm text-gray-300">${msg.message}</p></div>`;
+                    listEl.innerHTML += `<div class="card-bg p-4 rounded-lg glassmorphism glossy"><div class="flex justify-between items-center mb-1"><h3 class="font-bold">${msg.title}</h3><p class="text-xs text-gray-400">${date}</p></div><p class="text-sm text-gray-300">${msg.message}</p></div>`;
                 });
                 await updateDoc(doc(db, "users", currentUser.uid), { lastNotificationCheck: serverTimestamp() });
             } catch (error) {
@@ -501,7 +834,11 @@
         async function loadWithdrawalHistory() {
             const historyList = document.getElementById('withdrawal-history-list');
             historyList.innerHTML = '<p class="text-gray-400">Loading history...</p>';
-            const q = query(collection(db, "withdrawals"), where("userId", "==", currentUser.uid), orderBy("requestedAt", "desc"));
+            let q = query(collection(db, "withdrawals"), where("userId", "==", currentUser.uid), orderBy("requestedAt", "desc"));
+            const filter = historyFilter.value;
+            if (filter !== 'all') {
+                q = query(collection(db, "withdrawals"), where("userId", "==", currentUser.uid), where("status", "==", filter), orderBy("requestedAt", "desc"));
+            }
             try {
                 const querySnapshot = await getDocs(q);
                 if (querySnapshot.empty) {
@@ -512,31 +849,20 @@
                 querySnapshot.forEach(doc => {
                     const request = doc.data();
                     const status = request.status;
+                    let statusIcon = '🔄';
                     let statusColor = 'text-yellow-400';
-                    if (status === 'approved') statusColor = 'text-green-400';
-                    else if (status === 'rejected') statusColor = 'text-red-400';
+                    if (status === 'approved') { statusIcon = '✅'; statusColor = 'text-green-400'; }
+                    else if (status === 'rejected') { statusIcon = '❌'; statusColor = 'text-red-400'; }
                     const date = request.requestedAt ? request.requestedAt.toDate().toLocaleDateString() : 'N/A';
-                    historyList.innerHTML += `<div class="card-bg p-3 rounded-lg flex items-center justify-between"><div><p class="font-semibold">${request.amount} Coins - ${request.method}</p><p class="text-xs text-gray-400">${date}</p></div><p class="font-bold ${statusColor} capitalize">${status}</p></div>`;
+                    historyList.innerHTML += `<div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy"><div><p class="font-semibold">${statusIcon} ${request.amount} Coins - ${request.method}</p><p class="text-xs text-gray-400">${date}</p></div><p class="font-bold ${statusColor} capitalize">${status}</p></div>`;
                 });
             } catch (error) {
                 console.error("Error fetching withdrawal history: ", error);
                 historyList.innerHTML = '<p class="text-red-400 text-center">Error loading history.</p>';
             }
         }
-        
-        async function handleApplyReferralCode() {
-            if (userData.referredBy) return showAlert("You have already used a referral code.");
-            const codeInput = document.getElementById('enter-referral-code');
-            const code = codeInput.value.trim().toUpperCase();
-            if (!code) return showAlert("Please enter a code.");
-            if (code === userData.referralCode) return showAlert("You cannot use your own code.");
-            loader.style.display = 'flex';
-            await applyReferralBonus(code, true);
-            codeInput.value = '';
-            loader.style.display = 'none';
-        }
 
-        async function applyReferralBonus(referrerCode, isManualApply = false) {
+        async function applyReferralBonus(referrerCode) {
             const usersRef = collection(db, "users");
             const q = query(usersRef, where("referralCode", "==", referrerCode));
             try {
@@ -545,27 +871,51 @@
                     const referrerDoc = querySnapshot.docs[0];
                     const referrerRef = doc(db, "users", referrerDoc.id);
                     const referrerData = referrerDoc.data();
-                    await updateDoc(referrerRef, { balance: (referrerData.balance || 0) + 100 });
+                    await updateDoc(referrerRef, { balance: (referrerData.balance || 0) + 50, referrals: (referrerData.referrals || 0) + 1 });
                     const newUserRef = doc(db, "users", currentUser.uid);
-                    await updateDoc(newUserRef, { balance: (userData.balance || 0) + 100, referredBy: referrerCode });
-                    userData.balance += 100; userData.referredBy = referrerCode;
+                    await updateDoc(newUserRef, { balance: (userData.balance || 0) + 25, referredBy: referrerCode, totalEarned: (userData.totalEarned || 0) + 25 });
+                    userData.balance += 25;
+                    userData.referredBy = referrerCode;
+                    userData.totalEarned += 25;
+                    addToCoinHistory('Referral Bonus', 25);
                     updateUI();
-                    if(isManualApply) showAlert("Code applied successfully! You have received 100 coins.");
-                } else {
-                    if(isManualApply) showAlert("Invalid referral code.");
+                    showAlert("Referral bonus applied! You got 25 coins, your referrer got 50.");
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error("Error applying referral bonus: ", error);
-                if(isManualApply) showAlert("Error applying code.");
+                showAlert("Error applying referral bonus.");
             }
         }
 
-        async function updateBalance(amount) {
+        async function updateBalance(amount, reason) {
             if (!currentUser) return;
             const newBalance = (userData.balance || 0) + amount;
             const userRef = doc(db, "users", currentUser.uid);
             await updateDoc(userRef, { balance: newBalance });
             userData.balance = newBalance;
+            userData.totalEarned += Math.max(0, amount);
+            addToCoinHistory(reason, amount);
+            coinBalanceEl.classList.add('bounce', 'glow');
+            walletCoinBalanceEl.classList.add('bounce', 'glow');
+            ProfileCoinBalanceE1.classList.add('bounce', 'glow');
+            setTimeout(() => {
+                coinBalanceEl.classList.remove('bounce', 'glow');
+                walletCoinBalanceEl.classList.remove('bounce', 'glow');
+                ProfileCoinBalanceE1.classList.remove('bounce', 'glow');
+            }, 1000);
+            if (amount > 0) {
+                for (let i = 0; i < 10; i++) {
+                    let coin = document.createElement('span');
+                    coin.textContent = '💰';
+                    coin.style.position = 'fixed';
+                    coin.style.left = Math.random() * window.innerWidth + 'px';
+                    coin.style.top = '-10px';
+                    coin.style.fontSize = Math.random() * 20 + 10 + 'px';
+                    coin.style.animation = `fall ${Math.random() * 2 + 1}s linear`;
+                    document.body.appendChild(coin);
+                    setTimeout(() => coin.remove(), 3000);
+                }
+            }
             updateUI();
         }
 
@@ -579,45 +929,85 @@
             if (!amount || amount <= 0) return showAlert("Please enter a valid amount.");
             if (amount < minWithdrawal) return showAlert(`Minimum withdrawal is ${minWithdrawal} coins.`);
             if (amount > userData.balance) return showAlert("Insufficient balance.");
-            if (!paymentDetail) return showAlert("Please enter payment details (e.g., UPI ID or bKash Number).");
+            if (!paymentDetail) return showAlert("Please enter payment details.");
 
             loader.style.display = 'flex';
             try {
-                await updateBalance(-amount);
+                await updateBalance(-amount, 'Withdrawal');
                 await addDoc(collection(db, "withdrawals"), {
-                    userId: currentUser.uid, userName: userData.name, userEmail: userData.email,
-                    amount: amount, method: method, paymentDetail: paymentDetail, status: "pending", requestedAt: serverTimestamp()
+                    userId: currentUser.uid,
+                    userName: userData.name,
+                    userEmail: userData.email,
+                    amount: amount,
+                    method: method,
+                    paymentDetail: paymentDetail,
+                    status: "pending",
+                    requestedAt: serverTimestamp()
                 });
+                userData.withdrawals = (userData.withdrawals || 0) + 1;
+                showSuccessAnimation();
                 showAlert("Withdrawal request submitted successfully!");
                 document.getElementById('withdraw-amount').value = '';
                 paymentDetailInput.value = '';
                 loadWithdrawalHistory();
             } catch (error) {
                 showAlert("Error submitting request: " + error.message);
-                await updateBalance(amount); // Refund if error
+                await updateBalance(amount, 'Refund');
             } finally {
                 loader.style.display = 'none';
             }
         }
 
         function copyReferralCode() {
-            const textToCopy = referralCodeEl.textContent;
+            const textToCopy = referralCodeEl.value;
             navigator.clipboard.writeText(textToCopy).then(() => {
-                showAlert("Referral code copied!");
+                showAlert("Referral link copied!");
             }).catch(err => {
-                showAlert("Failed to copy code.");
+                showAlert("Failed to copy link.");
             });
         }
         
         function shareReferralCode() {
-            const text = `Join Daily Earning and earn money! Use my referral code to get a bonus: ${userData.referralCode}`;
+            const text = `Join Daily Earning and earn money! Use my referral link to get a bonus: https://t.me/addincome00_bot?start=${userData.referralCode}`;
             if (navigator.share) {
-                navigator.share({ title: 'Daily earning!', text: text, url: window.location.href })
-                    .catch((error) => console.error("Share failed:", error));
+                navigator.share({
+                    title: 'Daily Earning!',
+                    text: text,
+                    url: `https://t.me/addincome00_bot?start=${userData.referralCode}`
+                }).catch((error) => console.error("Share failed:", error));
             } else {
                 copyReferralCode();
-                showAlert("Share feature is not available. Referral code has been copied instead!");
+                showAlert("Share feature is not available. Referral link has been copied instead!");
             }
+        }
+
+        function shareCustomMessage() {
+            const msg = customInviteMsg.value + ` https://t.me/addincome00_bot?start=${userData.referralCode}`;
+            navigator.clipboard.writeText(msg).then(() => {
+                showAlert("Custom message copied! Paste it in your social app.");
+            });
+        }
+
+        function shareSocial(platform) {
+            const referralLink = `https://t.me/addincome00_bot?start=${userData.referralCode}`;
+            let shareUrl;
+            switch (platform) {
+                case 'telegram':
+                    shareUrl = `https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent("Join Daily Earning and earn money!")}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(`Join Daily Earning and earn money! Use my referral link: ${referralLink}`)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(referralLink)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Join Daily Earning and earn money! Use my referral link: ${referralLink}`)}`;
+                    break;
+                default:
+                    return;
+            }
+            window.open(shareUrl, '_blank');
         }
 
         window.claimReward = async function(taskType) {
@@ -641,36 +1031,259 @@
             let adPromise;
             loader.style.display = 'flex';
             try {
-                 switch(taskType) {
+                // Note: For new ad codes, assuming same function call; adjust if different global functions are provided by the scripts.
+                switch(taskType) {
                     case 'interstitial': adPromise = window.show_9828924(); break;
                     case 'popup': adPromise = window.show_9828924('pop'); break;
                     case 'inApp': adPromise = window.show_9828924({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false } }); break;
                     case 'miniApp': adPromise = window.show_9828924(); break;
+                    case 'productReview': adPromise = window.show_9828924(); break; // Use new script if function differs
+                    case 'alternativeAd': adPromise = window.show_9828924(); break; // Use second new script if function differs
                     default: return;
                 }
                 
                 await adPromise;
 
+                // Add wait time based on task
+                let waitTime = 0;
+                if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 15000;
+                if (taskType === 'watchThreeAds') waitTime = 30000;
+                await new Promise(resolve => setTimeout(resolve, waitTime));
+
                 const newCount = (userData.dailyAdCount || 0) + 1;
-                await updateDoc(userRef, { dailyAdCount: newCount });
+                await updateDoc(userRef, { dailyAdCount: newCount, adsWatched: (userData.adsWatched || 0) + 1, actionsCount: (userData.actionsCount || 0) + 1 });
                 userData.dailyAdCount = newCount;
+                userData.adsWatched += 1;
+                userData.actionsCount += 1;
                 
                 let rewardAmount = 0;
                 if (taskType === 'miniApp') rewardAmount = 20;
+                else if (taskType === 'productReview') rewardAmount = 15;
                 else if (taskType !== 'inApp') rewardAmount = 10;
 
                 if (rewardAmount > 0) {
-                    await updateBalance(rewardAmount);
+                    await updateBalance(rewardAmount, `${taskType} Reward`);
+                    await updateBalance(10, 'Task Complete'); // Extra 10 for completing task
                     showAlert(`Congratulations! You have won ${rewardAmount} coins.`);
                 }
                 updateAdsLeftCount();
-
+                updateUI();
             } catch(e) {
                 console.error("Ad error:", e);
                 showAlert('Could not show ad. Please try again later.');
             } finally {
                 loader.style.display = 'none';
             }
+        }
+
+        window.watchThreeAds = async function() {
+            try {
+                await claimReward('interstitial');
+                await claimReward('popup');
+                await claimReward('inApp');
+                await updateBalance(30, '3 Ads Bonus');
+                await updateBalance(10, 'Task Complete');
+                showAlert('Bonus 30 coins for watching 3 ads!');
+            } catch (e) {
+                showAlert('Failed to watch all ads.');
+            }
+        }
+
+        window.adMultiplier = async function() {
+            // Simulate longer ad
+            await claimReward('interstitial');
+            await updateBalance(10, 'Ad Multiplier'); // Extra 10 for x2
+            await updateBalance(10, 'Task Complete');
+            showAlert('Double rewards claimed!');
+        }
+
+        async function loadReferralLeaderboard() {
+            const leaderboardList = document.getElementById('referral-leaderboard');
+            leaderboardList.innerHTML = '<p class="text-gray-400">Loading leaderboard...</p>';
+            // For weekly: approximate with users created in last 7 days, but count referrals weekly is complex; using all-time top 5 for simplicity
+            try {
+                const q = query(
+                    collection(db, "users"),
+                    orderBy("referrals", "desc"),
+                    orderBy("totalEarned", "desc"),
+                    limit(5)
+                );
+                onSnapshot(q, (querySnapshot) => {
+                    if (querySnapshot.empty) {
+                        leaderboardList.innerHTML = '<p class="text-gray-400 text-center">No leaderboard data available.</p>';
+                        return;
+                    }
+                    leaderboardList.innerHTML = '';
+                    let rank = 1;
+                    querySnapshot.forEach(doc => {
+                        const user = doc.data();
+                        const name = user.name || 'Anonymous';
+                        const referrals = user.referrals || 0;
+                        const totalEarned = user.totalEarned || 0;
+                        let badge = '';
+                        if (user.membership === 'verified') badge = '🟢';
+                        else if (user.membership === 'premium') badge = '✨';
+                        else if (user.membership === 'diamond') badge = '💎';
+                        const userClass = user.membership === 'premium' ? 'premium-user' : user.membership === 'verified' ? 'verified-user' : user.membership === 'diamond' ? 'diamond-user' : '';
+                        leaderboardList.innerHTML += `
+                            <div class="leaderboard-item p-3 rounded-lg glassmorphism glossy">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="font-semibold ${userClass}">${rank}. ${name} ${badge}</p>
+                                        <p class="text-xs text-gray-400">${referrals} Referrals</p>
+                                    </div>
+                                    <p class="font-bold text-accent">${totalEarned} Coins</p>
+                                </div>
+                            </div>
+                        `;
+                        rank++;
+                    });
+                });
+            } catch (error) {
+                console.error("Error loading referral leaderboard:", error);
+                leaderboardList.innerHTML = '<p class="text-red-400 text-center">Error loading leaderboard.</p>';
+            }
+        }
+
+        async function loadHomeLeaderboard() {
+            homeLeaderboard.innerHTML = '<p class="text-gray-400">Loading...</p>';
+            try {
+                const q = query(
+                    collection(db, "users"),
+                    orderBy("balance", "desc"),
+                    limit(10)
+                );
+                onSnapshot(q, (querySnapshot) => {
+                    if (querySnapshot.empty) {
+                        homeLeaderboard.innerHTML = '<p class="text-gray-400 text-center">No data available.</p>';
+                        return;
+                    }
+                    homeLeaderboard.innerHTML = '';
+                    let rank = 1;
+                    querySnapshot.forEach(doc => {
+                        const user = doc.data();
+                        const name = user.name || 'Anonymous';
+                        const balance = user.balance || 0;
+                        let badge = '';
+                        if (user.membership === 'verified') badge = '🟢';
+                        else if (user.membership === 'premium') badge = '✨';
+                        else if (user.membership === 'diamond') badge = '💎';
+                        const userClass = user.membership === 'premium' ? 'premium-user' : user.membership === 'verified' ? 'verified-user' : user.membership === 'diamond' ? 'diamond-user' : '';
+                        homeLeaderboard.innerHTML += `
+                            <div class="leaderboard-item p-3 rounded-lg glassmorphism glossy">
+                                <div class="flex justify-between items-center">
+                                    <p class="font-semibold ${userClass}">${rank}. ${name} ${badge}</p>
+                                    <p class="font-bold text-accent">${balance} Coins</p>
+                                </div>
+                            </div>
+                        `;
+                        rank++;
+                    });
+                });
+            } catch (error) {
+                console.error("Error loading home leaderboard:", error);
+                homeLeaderboard.innerHTML = '<p class="text-red-400 text-center">Error loading.</p>';
+            }
+        }
+
+        function startCountdown() {
+            let time = 21600; // 6 hours in seconds
+            const interval = setInterval(() => {
+                const hours = Math.floor(time / 3600);
+                const minutes = Math.floor((time % 3600) / 60);
+                const seconds = time % 60;
+                countdownTimer.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                time--;
+                if (time < 0) {
+                    clearInterval(interval);
+                    startCountdown();
+                }
+            }, 1000);
+
+            // For task page, 24 hours
+            let taskTime = 86400; // 24 hours
+            const taskInterval = setInterval(() => {
+                const hours = Math.floor(taskTime / 3600);
+                const minutes = Math.floor((taskTime % 3600) / 60);
+                const seconds = taskTime % 60;
+                taskCountdownTimer.textContent = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                taskTime--;
+                if (taskTime < 0) {
+                    clearInterval(taskInterval);
+                    startCountdown();
+                }
+            }, 1000);
+        }
+
+        async function addToCoinHistory(reason, amount) {
+            userData.coinHistory = userData.coinHistory || [];
+            userData.coinHistory.push({ reason, amount, date: new Date().toLocaleString() });
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, { coinHistory: userData.coinHistory });
+            loadCoinHistory();
+            loadCoinHistory('task-coin-history-list');
+        }
+
+        function loadCoinHistory(listId = 'coin-history-list') {
+            const list = document.getElementById(listId);
+            list.innerHTML = '';
+            (userData.coinHistory || []).forEach(entry => {
+                list.innerHTML += `<div class="flex justify-between"><span>${entry.reason} (${entry.date})</span><span class="${entry.amount > 0 ? 'text-green-400' : 'text-red-400'}">${entry.amount}</span></div>`;
+            });
+        }
+
+        async function loadReferHistory() {
+            const referHistoryList = document.getElementById('refer-history-list');
+            referHistoryList.innerHTML = '<p class="text-gray-400">Loading history...</p>';
+            try {
+                const q = query(
+                    collection(db, "users"),
+                    where("referredBy", "==", userData.referralCode),
+                    orderBy("createdAt", "desc")
+                );
+                const querySnapshot = await getDocs(q);
+                if (querySnapshot.empty) {
+                    referHistoryList.innerHTML = '<p class="text-gray-400 text-center">No referral history available.</p>';
+                    return;
+                }
+                referHistoryList.innerHTML = '';
+                let index = 1;
+                querySnapshot.forEach(doc => {
+                    const user = doc.data();
+                    const name = user.name || 'Anonymous';
+                    const date = user.createdAt ? user.createdAt.toDate().toLocaleDateString() : 'N/A';
+                    referHistoryList.innerHTML += `
+                        <div class="flex justify-between"><span>${index}. ${date} - ${name} - Approved</span><span class="text-green-400">50</span></div>
+                    `;
+                    index++;
+                });
+            } catch (error) {
+                console.error("Error loading refer history:", error);
+                referHistoryList.innerHTML = '<p class="text-red-400 text-center">Error loading history.</p>';
+            }
+        }
+
+        async function loadEarningsSummary() {
+            adsWatchedEl.textContent = userData.adsWatched || 0;
+            gamesPlayedEl.textContent = userData.gamesPlayed || 0;
+            referralsCountEl.textContent = userData.referrals || 0;
+            totalEarnedEl.textContent = userData.totalEarned || 0;
+            withdrawalsCountEl.textContent = userData.withdrawals || 0;
+
+            homeAdsWatched.textContent = userData.adsWatched || 0;
+            homeGamesPlayed.textContent = userData.gamesPlayed || 0;
+            homeReferralsCount.textContent = userData.referrals || 0;
+            homeTotalEarned.textContent = userData.totalEarned || 0;
+            homeWithdrawalsCount.textContent = userData.withdrawals || 0;
+        }
+
+        function loadLastLogin() {
+            lastLoginEl.textContent = userData.lastLogin ? userData.lastLogin.toDate().toLocaleString() : 'N/A';
+        }
+
+        function showSuccessAnimation() {
+            successAnimation.classList.remove('hidden');
+            setTimeout(() => successAnimation.classList.add('hidden'), 2000);
         }
 
         function showAlert(message) {
@@ -681,15 +1294,6 @@
             };
         }
         window.showAlert = showAlert;
-
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-

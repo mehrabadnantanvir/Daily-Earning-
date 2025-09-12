@@ -12,7 +12,6 @@
     <script async src="https://www.revenuecpmgate.com/yqv7fk7tyi?key=cf74cba9da8656392aeb5240c643794a"></script>
     <script async src="https://www.revenuecpmgate.com/rti7fc03?key=af33268b8d8270d2bf7542b8cd5a6295"></script>
     
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -99,6 +98,27 @@
     <!-- App Loader -->
     <div id="loader" class="hidden fixed inset-0 dark-bg bg-opacity-75 flex items-center justify-center z-50">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-accent"></div>
+    </div>
+
+    <!-- Authentication Section -->
+    <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page glassmorphism glossy">
+        <h1 class="text-4xl font-bold text-center mb-2 text-accent">Daily Earning</h1>
+        <p class="text-center text-gray-400 mb-8">Login or Signup to continue</p>
+        <div id="auth-container">
+            <div id="login-view">
+                <input id="login-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="login-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
+                <button id="login-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Login</button>
+                <p class="text-center text-gray-400">Don't have an account? <a href="#" id="show-signup" class="font-semibold text-accent">Sign Up</a></p>
+            </div>
+            <div id="signup-view" class="hidden">
+                <input id="signup-name" type="text" placeholder="Full Name" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
+                <button id="signup-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Sign Up</button>
+                <p class="text-center text-gray-400">Already have an account? <a href="#" id="show-login" class="font-semibold text-accent">Login</a></p>
+            </div>
+        </div>
     </div>
 
     <!-- Main App Container -->
@@ -327,6 +347,9 @@
                     </div>
                     <div class="space-y-3 text-sm">
                         <div class="bg-[#0f172a] p-3 rounded-lg glassmorphism glossy">
+                            <p id="profile-email" class="text-gray-300"></p>
+                        </div>
+                        <div class="bg-[#0f172a] p-3 rounded-lg glassmorphism glossy">
                             <p class="font-semibold">Coins:</p>
                             <p id="coin-balances" class="text-yellow-400 glow"></p>
                         </div>
@@ -427,17 +450,13 @@
         let currentUser = null;
         let userData = null;
         let appConfig = {};
-        let tgUser = null;
-
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tgUser = tg.initDataUnsafe.user;
 
         const loader = document.getElementById('loader');
         const coinBalanceEl = document.getElementById('coin-balance');
         const walletCoinBalanceEl = document.getElementById('wallet-coin-balance');
         const ProfileCoinBalanceE1 = document.getElementById('coin-balances');
         const profileNameEl = document.getElementById('profile-name');
+        const profileEmailEl = document.getElementById('profile-email');
         const referralCodeEl = document.getElementById('referral-code');
         const minWithdrawalInfoEl = document.getElementById('min-withdrawal-info');
         const coinValueInfoEl = document.getElementById('coin-value-info');
@@ -474,6 +493,7 @@
         window.onload = () => {
             lucide.createIcons();
             setupEventListeners();
+            showMainPage('auth-section');
             loader.style.display = 'none';
             onAuthStateChanged(auth, handleAuthStateChange);
             setInterval(() => {
@@ -484,29 +504,11 @@
         async function handleAuthStateChange(user) {
             loader.style.display = 'flex';
             try {
-                if (!user) {
-                    if (!tgUser) {
-                        showAlert("This app must be opened in Telegram.");
-                        return;
-                    }
-                    const email = `tg_${tgUser.id}@example.com`;
-                    const password = btoa(tgUser.id + 'secret'); // Simple password generation
-                    try {
-                        await signInWithEmailAndPassword(auth, email, password);
-                    } catch (error) {
-                        if (error.code === 'auth/user-not-found') {
-                            await createUserWithEmailAndPassword(auth, email, password);
-                        } else {
-                            showAlert("Authentication error: " + error.message);
-                            return;
-                        }
-                    }
-                    return; // onAuthStateChanged will trigger again
-                } else {
+                if (user) {
                     currentUser = user;
                     await fetchUserData();
                     if (!userData) {
-                        showAlert("Failed to load user data. Please try again.");
+                        showAlert("Failed to load user data. Please try logging in again.");
                         await signOut(auth);
                         return;
                     }
@@ -530,6 +532,10 @@
                     loadEarningsSummary();
                     loadLastLogin();
                     loadHomeLeaderboard();
+                } else {
+                    currentUser = null;
+                    userData = null;
+                    showMainPage('auth-section');
                 }
             } catch (error) {
                 console.error("Error in auth state change:", error);
@@ -543,7 +549,7 @@
             console.log("Fetching user data for UID:", currentUser?.uid);
             if (!currentUser) {
                 console.error("No authenticated user found.");
-                showAlert("No authenticated user found. Please try again.");
+                showAlert("No authenticated user found. Please log in again.");
                 return;
             }
             const userRef = doc(db, "users", currentUser.uid);
@@ -559,9 +565,8 @@
                     const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                     const defaultUserData = {
                         uid: currentUser.uid,
-                        name: `${tgUser.first_name || ''} ${tgUser.last_name || ''}`.trim() || 'User',
-                        username: tgUser.username || null,
-                        photo: tgUser.photo_url || null,
+                        name: currentUser.displayName || currentUser.email.split('@')[0],
+                        email: currentUser.email,
                         balance: 10,
                         referralCode: ownReferralCode,
                         referredBy: null,
@@ -622,7 +627,8 @@
             coinBalanceEl.textContent = balance;
             walletCoinBalanceEl.textContent = balance;
             ProfileCoinBalanceE1.textContent = balance;
-            profileNameEl.textContent = userData.username ? '@' + userData.username : userData.name || 'No Name';
+            profileNameEl.textContent = userData.name || 'No Name';
+            profileEmailEl.textContent = userData.email || 'No Email';
             referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
             coinValueInfoEl.textContent = `${appConfig.coinValueCoins || 1000} Coins = ৳ ${appConfig.coinValueInr || 10}`;
@@ -655,7 +661,6 @@
                 membershipBadge.textContent = '💎 Diamond';
                 membershipBadge.className = 'text-sm text-purple-400';
             }
-            profileAvatar.src = userData.photo || 'https://static.vecteezy.com/system/resources/thumbnails/063/477/529/small/neutral-gray-silhouette-of-male-avatar-defoult-photo-placeholder-with-short-hair-for-anonymous-profile-picture-with-minimalist-style-suitable-for-various-social-media-platforms-and-websites-vector.jpg';
             profileAvatar.classList.add(`${userData.membership}-frame`);
             loadEarningsSummary();
         }
@@ -704,6 +709,19 @@
         window.navigateTo = navigateTo;
 
         function setupEventListeners() {
+            document.getElementById('show-signup').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('login-view').classList.add('hidden');
+                document.getElementById('signup-view').classList.remove('hidden');
+            });
+            document.getElementById('show-login').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('signup-view').classList.add('hidden');
+                document.getElementById('login-view').classList.remove('hidden');
+            });
+            document.getElementById('signup-btn').addEventListener('click', handleSignup);
+            document.getElementById('login-btn').addEventListener('click', handleLogin);
+            document.getElementById('logout-btn').addEventListener('click', handleLogout);
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -731,7 +749,37 @@
             withdrawMethodSelect.addEventListener('change', updateDynamicPaymentFields);
             historyFilter.addEventListener('change', loadWithdrawalHistory);
             document.getElementById('custom-share-btn').addEventListener('click', shareCustomMessage);
-            document.getElementById('logout-btn').addEventListener('click', handleLogout);
+        }
+
+        async function handleSignup() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            if (!name || !email || !password) return showAlert("Please fill all fields.");
+            loader.style.display = 'flex';
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const userRef = doc(db, "users", userCredential.user.uid);
+                await updateDoc(userRef, { name: name });
+            } catch (error) {
+                showAlert(error.message);
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            if (!email || !password) return showAlert("Please enter email and password.");
+            loader.style.display = 'flex';
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                showAlert(error.message);
+            } finally {
+                loader.style.display = 'none';
+            }
         }
 
         async function handleLogout() {
@@ -889,6 +937,7 @@
                 await addDoc(collection(db, "withdrawals"), {
                     userId: currentUser.uid,
                     userName: userData.name,
+                    userEmail: userData.email,
                     amount: amount,
                     method: method,
                     paymentDetail: paymentDetail,
@@ -1068,7 +1117,7 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const displayName = user.username ? '@' + user.username : user.name || 'Anonymous';
+                        const name = user.name || 'Anonymous';
                         const referrals = user.referrals || 0;
                         const totalEarned = user.totalEarned || 0;
                         let badge = '';
@@ -1080,7 +1129,7 @@
                             <div class="leaderboard-item p-3 rounded-lg glassmorphism glossy">
                                 <div class="flex justify-between items-center">
                                     <div>
-                                        <p class="font-semibold ${userClass}">${rank}. ${displayName} ${badge}</p>
+                                        <p class="font-semibold ${userClass}">${rank}. ${name} ${badge}</p>
                                         <p class="text-xs text-gray-400">${referrals} Referrals</p>
                                     </div>
                                     <p class="font-bold text-accent">${totalEarned} Coins</p>
@@ -1113,7 +1162,7 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const displayName = user.username ? '@' + user.username : user.name || 'Anonymous';
+                        const name = user.name || 'Anonymous';
                         const balance = user.balance || 0;
                         let badge = '';
                         if (user.membership === 'verified') badge = '🟢';
@@ -1123,7 +1172,7 @@
                         homeLeaderboard.innerHTML += `
                             <div class="leaderboard-item p-3 rounded-lg glassmorphism glossy">
                                 <div class="flex justify-between items-center">
-                                    <p class="font-semibold ${userClass}">${rank}. ${displayName} ${badge}</p>
+                                    <p class="font-semibold ${userClass}">${rank}. ${name} ${badge}</p>
                                     <p class="font-bold text-accent">${balance} Coins</p>
                                 </div>
                             </div>

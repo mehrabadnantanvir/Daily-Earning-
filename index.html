@@ -565,7 +565,7 @@
                     const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
                     const defaultUserData = {
                         uid: currentUser.uid,
-                        name: currentUser.displayName || currentUser.email.split('@')[0],
+                        name: currentUser.displayName || 'Anonymous',
                         email: currentUser.email,
                         balance: 10,
                         referralCode: ownReferralCode,
@@ -627,7 +627,7 @@
             coinBalanceEl.textContent = balance;
             walletCoinBalanceEl.textContent = balance;
             ProfileCoinBalanceE1.textContent = balance;
-            profileNameEl.textContent = userData.name || 'No Name';
+            profileNameEl.textContent = 'Username: ' + (userData.name || 'Anonymous');
             profileEmailEl.textContent = userData.email || 'No Email';
             referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
@@ -1297,4 +1297,3 @@
     </script>
 </body>
 </html>
-

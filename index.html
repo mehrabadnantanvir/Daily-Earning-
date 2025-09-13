@@ -1117,7 +1117,8 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const name = user.name || 'Anonymous';
+                        if (!user.name || user.name === 'Anonymous') return;
+                        const name = user.name;
                         const referrals = user.referrals || 0;
                         const totalEarned = user.totalEarned || 0;
                         let badge = '';
@@ -1162,7 +1163,8 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const name = user.name || 'Anonymous';
+                        if (!user.name || user.name === 'Anonymous') return;
+                        const name = user.name;
                         const balance = user.balance || 0;
                         let badge = '';
                         if (user.membership === 'verified') badge = '🟢';

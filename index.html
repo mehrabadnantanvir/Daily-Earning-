@@ -111,6 +111,7 @@
             </div>
             <div id="signup-view" class="hidden">
                 <input id="signup-name" type="text" placeholder="Full Name" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-username" type="text" placeholder="Username" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
                 <button id="signup-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Sign Up</button>
@@ -552,6 +553,7 @@
                     const defaultUserData = {
                         uid: currentUser.uid,
                         name: currentUser.displayName || currentUser.email.split('@')[0],
+                        username: currentUser.email.split('@')[0],
                         email: currentUser.email,
                         balance: 10,
                         referralCode: ownReferralCode,
@@ -612,7 +614,7 @@
             coinBalanceEl.textContent = balance;
             walletCoinBalanceEl.textContent = balance;
             ProfileCoinBalanceE1.textContent = balance;
-            profileNameEl.textContent = `Username: ${userData.name || 'No Name'}`;
+            profileNameEl.textContent = `Username: ${userData.username || 'No Name'}`;
             profileEmailEl.textContent = `Email: ${userData.email || 'No Email'}`;
             referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
@@ -735,14 +737,15 @@
         }
         async function handleSignup() {
             const name = document.getElementById('signup-name').value;
+            const username = document.getElementById('signup-username').value;
             const email = document.getElementById('signup-email').value;
             const password = document.getElementById('signup-password').value;
-            if (!name || !email || !password) return showAlert("Please fill all fields.");
+            if (!name || !username || !email || !password) return showAlert("Please fill all fields.");
             loader.style.display = 'flex';
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const userRef = doc(db, "users", userCredential.user.uid);
-                await updateDoc(userRef, { name: name });
+                await updateDoc(userRef, { name: name, username: username });
             } catch (error) {
                 showAlert(error.message);
             } finally {
@@ -908,7 +911,7 @@
                 await updateBalance(-amount, 'Withdrawal');
                 await addDoc(collection(db, "withdrawals"), {
                     userId: currentUser.uid,
-                    userName: userData.name,
+                    userName: userData.username,
                     userEmail: userData.email,
                     amount: amount,
                     method: method,
@@ -1077,7 +1080,7 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const name = user.name || 'Anonymous';
+                        const name = user.username || 'Anonymous';
                         const referrals = user.referrals || 0;
                         const totalEarned = user.totalEarned || 0;
                         let badge = '';
@@ -1123,7 +1126,7 @@
                     let rank = 1;
                     querySnapshot.forEach(doc => {
                         const user = doc.data();
-                        const name = user.name || 'Anonymous';
+                        const name = user.username || 'Anonymous';
                         const balance = user.balance || 0;
                         let badge = '';
                         if (user.membership === 'verified') badge = '🟢';
@@ -1206,7 +1209,7 @@
                 let index = 1;
                 querySnapshot.forEach(doc => {
                     const user = doc.data();
-                    const name = user.name || 'Anonymous';
+                    const name = user.username || 'Anonymous';
                     const date = user.createdAt ? user.createdAt.toDate().toLocaleDateString() : 'N/A';
                     referHistoryList.innerHTML += `
                         <div class="flex justify-between"><span>${index}. ${date} - ${name} - Approved</span><span class="text-green-400">50</span></div>

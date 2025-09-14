@@ -1047,8 +1047,8 @@
 
                 // Add wait time based on task
                 let waitTime = 0;
-                if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 3000;
-                if (taskType === 'watchThreeAds') waitTime = 30000;
+                if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 1000;
+                if (taskType === 'watchThreeAds') waitTime = 10000;
                 await new Promise(resolve => setTimeout(resolve, waitTime));
 
                 const newCount = (userData.dailyAdCount || 0) + 1;
@@ -1253,7 +1253,7 @@
                 let index = 1;
                 querySnapshot.forEach(doc => {
                     const user = doc.data();
-                    const name = user.name || 'Anonymous';
+                    const name = user.name || 'username';
                     const date = user.createdAt ? user.createdAt.toDate().toLocaleDateString() : 'N/A';
                     referHistoryList.innerHTML += `
                         <div class="flex justify-between"><span>${index}. ${date} - ${name} - Approved</span><span class="text-green-400">50</span></div>
@@ -1300,5 +1300,6 @@
     </script>
 </body>
 </html>
+
 
 

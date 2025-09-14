@@ -206,7 +206,7 @@
                         <div id="task-progress-fill" class="progress-fill w-0"></div>
                     </div>
                     <h2 class="text-lg font-semibold mb-2">⏳ Countdown to Next Bonus</h2>
-                    <p id="task-countdown-timer" class="text-center text-accent">24:00:00</p>
+                    <p id="task-countdown-timer" class="text-center text-accent">00:02:00</p>
                 </section>
                 <section>
                     <h2 class="text-lg font-semibold">🔧 Tasks</h2>
@@ -265,16 +265,15 @@
                         <option value="bKash">🟦 bKash</option>
                         <option value="Nagad">🟩 Nagad</option>
                         <option value="Rocket">🟪 Rocket</option>
-                        <option value="Bank Transfer">🟨 Bank Transfer</option>
+                        <option value="Bank Transfer">🟨 Mobile Recharge</option>
                     </select>
                     <div id="payment-details-container"></div>
                     <button id="withdraw-btn" class="w-full p-3 rounded-lg btn-accent mt-3">Request Withdrawal</button>
                     <div class="mt-4 text-sm text-gray-400">
-                        <p>📅 Next eligible withdrawal: In 2 days</p>
                         <p>🔁 You can withdraw every 7 days</p>
                     </div>
                     <div class="mt-4 text-sm text-gray-400">
-                        <p>🔒 আপনার একাউন্ট নিরাপদ রাখতে সঠিক নাম্বার ব্যবহার করুন। ভুল নাম্বারে টাকা ফেরত পাওয়া যাবে না।</p>
+                        <p>🔒 আপনার একাউন্ট নিরাপদ রাখতে সঠিক নাম্বার ব্যবহার করুন।</p>
                         <p>🔒 উইথড্র পেন্ডিং থাকা অবস্থায় উইথড্র দিতে পারবেন না তাহলে টাকা পাবেন না</p>
                     </div>
                 </div>
@@ -331,7 +330,6 @@
                 </div>
                 <p class="text-sm text-gray-300 text-center">🛡️ Fake or duplicate referrals may result in reward removal.</p>
                 <div class="mt-4">
-                    <textarea id="custom-invite-msg" class="w-full p-3 rounded-lg input-field" placeholder="Hey! Join this app and earn real money by just watching ads! Use my link & get bonus 🎁"></textarea>
                     <button id="custom-share-btn" class="w-full p-3 rounded-lg btn-accent mt-2">Share Custom Message</button>
                 </div>
             </div>
@@ -374,7 +372,7 @@
                         <h3 class="font-semibold mb-2">🛎️ Notification Settings</h3>
                         <label><input type="checkbox" checked> Get coin updates</label><br>
                         <label><input type="checkbox" checked> Withdrawal alerts</label><br>
-                        <label><input type="checkbox"> New offers</label>
+                        <label><input type="checkbox" checked> New offers</label>
                     </div>
                     <a href="https://t.me/dailyearningsupport" class="block w-full mt-4 p-3 rounded-lg btn-outline-accent text-center">🆘 ❓ Need Help? Contact Us</a>
                     <div class="mt-4 text-sm text-gray-400">
@@ -410,8 +408,11 @@
     </div>
 
     <div id="success-animation" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div class="text-6xl animate-bounce">🎉</div>
-    </div>
+  <div class="relative text-6xl animate-bounce">
+    <span class="absolute -inset-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-70 blur-xl animate-pulse"></span>
+    <span class="relative">🎉</span>
+  </div>
+</div>
 
     <div id="qr-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
@@ -1035,7 +1036,7 @@
                 switch(taskType) {
                     case 'interstitial': adPromise = window.show_9828924(); break;
                     case 'popup': adPromise = window.show_9828924('pop'); break;
-                    case 'inApp': adPromise = window.show_9828924({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false } }); break;
+                    case 'inApp': adPromise = window.show_9828924({ type: 'inApp', inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 1, everyPage: false } }); break;
                     case 'miniApp': adPromise = window.show_9828924(); break;
                     case 'productReview': adPromise = window.show_9828924(); break; // Use new script if function differs
                     case 'alternativeAd': adPromise = window.show_9828924(); break; // Use second new script if function differs
@@ -1046,7 +1047,7 @@
 
                 // Add wait time based on task
                 let waitTime = 0;
-                if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 15000;
+                if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 3000;
                 if (taskType === 'watchThreeAds') waitTime = 30000;
                 await new Promise(resolve => setTimeout(resolve, waitTime));
 
@@ -1057,7 +1058,7 @@
                 userData.actionsCount += 1;
                 
                 let rewardAmount = 0;
-                if (taskType === 'miniApp') rewardAmount = 20;
+                if (taskType === 'miniApp') rewardAmount = 10;
                 else if (taskType === 'productReview') rewardAmount = 15;
                 else if (taskType !== 'inApp') rewardAmount = 10;
 
@@ -1203,7 +1204,7 @@
             }, 1000);
 
             // For task page, 24 hours
-            let taskTime = 86400; // 24 hours
+            let taskTime = 7200; // 2 hours
             const taskInterval = setInterval(() => {
                 const hours = Math.floor(taskTime / 3600);
                 const minutes = Math.floor((taskTime % 3600) / 60);
@@ -1299,4 +1300,5 @@
     </script>
 </body>
 </html>
+
 

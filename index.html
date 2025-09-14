@@ -173,11 +173,11 @@
                             <button class="bg-white text-blue-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 15 coins</p></div></div>
+                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 10 coins</p></div></div>
                             <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">30 coin bonus</p></div></div>
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">25 coin bonus</p></div></div>
                             <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="watchThreeAds()">Start</button>
                         </div>
                     </div>
@@ -217,11 +217,11 @@
                             <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 15 coins</p></div></div>
+                            <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 10 coins</p></div></div>
                             <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">30 coin bonus</p></div></div>
+                            <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">25 coin bonus</p></div></div>
                             <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="watchThreeAds()">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
@@ -509,12 +509,10 @@
                     currentUser = user;
                     await fetchUserData();
                     if (!userData) {
-                        showAlert("Failed to load user data. Please try logging in again.");
                         await signOut(auth);
                         return;
                     }
                     if (userData.isBlocked) {
-                        showAlert("Your account has been blocked.");
                         await signOut(auth);
                         return;
                     }
@@ -540,7 +538,6 @@
                 }
             } catch (error) {
                 console.error("Error in auth state change:", error);
-                showAlert("An error occurred during authentication. Please try again.");
             } finally {
                 loader.style.display = 'none';
             }
@@ -550,7 +547,6 @@
             console.log("Fetching user data for UID:", currentUser?.uid);
             if (!currentUser) {
                 console.error("No authenticated user found.");
-                showAlert("No authenticated user found. Please log in again.");
                 return;
             }
             const userRef = doc(db, "users", currentUser.uid);
@@ -600,7 +596,6 @@
                 }
             } catch (error) {
                 console.error("Error fetching user data:", error.code, error.message, error.stack);
-                showAlert(`Failed to load user data: ${error.message}`);
             }
         }
 
@@ -1011,7 +1006,7 @@
             window.open(shareUrl, '_blank');
         }
 
-        window.claimReward = async function(taskType) {
+        window.claimReward = async function(taskType, skipReward = false) {
             const today = new Date().toISOString().split('T')[0];
             const userRef = doc(db, "users", currentUser.uid);
 
@@ -1057,14 +1052,15 @@
                 userData.adsWatched += 1;
                 userData.actionsCount += 1;
                 
-                let rewardAmount = 0;
+                let rewardAmount = 10;
                 if (taskType === 'miniApp') rewardAmount = 10;
-                else if (taskType === 'productReview') rewardAmount = 15;
-                else if (taskType !== 'inApp') rewardAmount = 10;
+                else if (taskType === 'productReview') rewardAmount = 10;
+                else if (taskType === 'alternativeAd') rewardAmount = 10;
+                else if (taskType === 'popup') rewardAmount = 5;
+                else if (taskType === 'inApp') rewardAmount = 0;
 
-                if (rewardAmount > 0) {
+                if (rewardAmount > 0 && !skipReward) {
                     await updateBalance(rewardAmount, `${taskType} Reward`);
-                    await updateBalance(10, 'Task Complete'); // Extra 10 for completing task
                     showAlert(`Congratulations! You have won ${rewardAmount} coins.`);
                 }
                 updateAdsLeftCount();
@@ -1079,23 +1075,25 @@
 
         window.watchThreeAds = async function() {
             try {
-                await claimReward('interstitial');
-                await claimReward('popup');
-                await claimReward('inApp');
-                await updateBalance(30, '3 Ads Bonus');
-                await updateBalance(10, 'Task Complete');
-                showAlert('Bonus 30 coins for watching 3 ads!');
+                await claimReward('interstitial', true);
+                await claimReward('popup', true);
+                await claimReward('inApp', true);
+                await updateBalance(25, '3 Ads Bonus');
+                showAlert('Bonus 25 coins for watching 3 ads!');
             } catch (e) {
                 showAlert('Failed to watch all ads.');
             }
         }
 
         window.adMultiplier = async function() {
-            // Simulate longer ad
-            await claimReward('interstitial');
-            await updateBalance(10, 'Ad Multiplier'); // Extra 10 for x2
-            await updateBalance(10, 'Task Complete');
-            showAlert('Double rewards claimed!');
+            try {
+                await claimReward('interstitial', true);
+                await claimReward('interstitial', true);
+                await updateBalance(20, 'Ad Multiplier');
+                showAlert('Double rewards claimed!');
+            } catch (e) {
+                showAlert('Failed to watch ads for multiplier.');
+            }
         }
 
         async function loadReferralLeaderboard() {
@@ -1300,6 +1298,3 @@
     </script>
 </body>
 </html>
-
-
-

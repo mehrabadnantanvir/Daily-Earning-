@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Earning</title>
-    
+  
     <!-- Original Ad Code -->
     <script src='//libtl.com/sdk.js' data-zone='9828924' data-sdk='show_9828924'></script>
-    
+  
     <!-- New Ad Codes -->
     <script async src="https://www.revenuecpmgate.com/yqv7fk7tyi?key=cf74cba9da8656392aeb5240c643794a"></script>
     <script async src="https://www.revenuecpmgate.com/rti7fc03?key=af33268b8d8270d2bf7542b8cd5a6295"></script>
-    
+  
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -94,12 +94,10 @@
     </style>
 </head>
 <body class="max-w-md mx-auto dynamic-bg">
-
     <!-- App Loader -->
     <div id="loader" class="hidden fixed inset-0 dark-bg bg-opacity-75 flex items-center justify-center z-50">
         <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-accent"></div>
     </div>
-
     <!-- Authentication Section -->
     <div id="auth-section" class="min-h-screen p-6 flex-col justify-center main-page glassmorphism glossy">
         <h1 class="text-4xl font-bold text-center mb-2 text-accent">Daily Earning</h1>
@@ -120,7 +118,6 @@
             </div>
         </div>
     </div>
-
     <!-- Main App Container -->
     <div id="app-container" class="min-h-screen flex-col main-page">
         <header class="flex items-center justify-between p-4 sticky top-0 bg-opacity-80 backdrop-blur-md z-10 dark-bg glassmorphism glossy">
@@ -133,7 +130,6 @@
                 <i data-lucide="user" class="w-6 h-6 cursor-pointer" onclick="navigateTo('profile-page')"></i>
             </div>
         </header>
-
         <main class="flex-grow">
             <!-- Home Page -->
             <div id="home-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
@@ -197,7 +193,6 @@
                     <div id="home-leaderboard" class="space-y-2"></div>
                 </section>
             </div>
-
             <!-- Task Page -->
             <div id="task-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
                 <section class="glassmorphism glossy p-4 rounded-lg">
@@ -251,7 +246,6 @@
                     <div id="task-coin-history-list" class="space-y-2"></div>
                 </section>
             </div>
-
             <!-- Wallet Page -->
             <div id="wallet-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
                 <h2 class="text-xl font-bold text-center">My Wallet</h2>
@@ -288,7 +282,6 @@
                     <div id="withdrawal-history-list" class="space-y-3"></div>
                 </div>
             </div>
-
             <!-- Refer Page -->
             <div id="refer-page" class="p-4 space-y-6 sub-page glassmorphism glossy">
                 <h2 class="text-xl font-bold text-center">Refer & Earn</h2>
@@ -333,14 +326,17 @@
                     <button id="custom-share-btn" class="w-full p-3 rounded-lg btn-accent mt-2">Share Custom Message</button>
                 </div>
             </div>
-
             <!-- Profile Page -->
             <div id="profile-page" class="p-4 space-y-6 sub-page glassmorphism glossy neumorphic">
                 <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
                 <div class="bg-[#1e293b] p-6 rounded-xl shadow-lg glassmorphism glossy neumorphic">
                     <div class="flex flex-col items-center mb-6">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/063/477/529/small/neutral-gray-silhouette-of-male-avatar-defoult-photo-placeholder-with-short-hair-for-anonymous-profile-picture-with-minimalist-style-suitable-for-various-social-media-platforms-and-websites-vector.jpg" class="rounded-full border-2 border-gray-600 mb-3 shimmer" id="profile-avatar">
-                        <p id="profile-name" class="font-semibold">Username:</p>
+                        <p class="font-semibold">Username: <span id="username-text"></span> <i id="edit-username-icon" data-lucide="edit" class="w-4 h-4 cursor-pointer"></i></p>
+                        <div id="edit-username-container" class="hidden w-full">
+                            <input id="edit-username" type="text" placeholder="Edit Name" class="w-full p-3 rounded-lg input-field mb-4">
+                            <button id="save-username-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Save Name</button>
+                        </div>
                         <span id="membership-badge" class="text-sm text-green-400">🟢 Free Member</span>
                     </div>
                     <div class="space-y-3 text-sm">
@@ -363,7 +359,7 @@
                         </div>
                         <div class="bg-[#0f172a] p-3 rounded-lg text-gray-400 text-xs glassmorphism glossy">
                             <p>
-                                Note: This is our trusted free income Telegram bot, here you will get 
+                                Note: This is our trusted free income Telegram bot, here you will get
                                 <span class="text-green-400 font-semibold">100% withdrawal payment</span> by working.
                             </p>
                         </div>
@@ -383,14 +379,13 @@
                     </button>
                 </div>
             </div>
-            
+          
             <!-- Notifications Page -->
             <div id="notifications-page" class="p-4 space-y-4 sub-page glassmorphism glossy">
                 <h2 class="text-xl font-bold text-center">Notifications</h2>
                 <div id="notifications-list" class="space-y-3"></div>
             </div>
         </main>
-
         <nav class="bottom-nav sticky bottom-0 grid grid-cols-5 items-center text-center py-2 card-bg glassmorphism glossy">
             <a href="#" class="nav-link" data-page="home-page"><i data-lucide="home" class="mx-auto w-6 h-6"></i><span class="text-xs">Home</span></a>
             <a href="#" class="nav-link" data-page="task-page"><i data-lucide="check-circle" class="mx-auto w-6 h-6"></i><span class="text-xs">Tasks</span></a>
@@ -399,28 +394,25 @@
             <a href="#" class="nav-link" data-page="profile-page"><i data-lucide="user" class="mx-auto w-6 h-6"></i><span class="text-xs">Profile</span></a>
         </nav>
     </div>
-    
+  
     <div id="custom-alert" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
             <p id="alert-message" class="mb-4"></p>
             <button id="alert-ok-btn" class="btn-accent px-6 py-2 rounded-lg">OK</button>
         </div>
     </div>
-
     <div id="success-animation" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
   <div class="relative text-6xl animate-bounce">
     <span class="absolute -inset-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 opacity-70 blur-xl animate-pulse"></span>
     <span class="relative">🎉</span>
   </div>
 </div>
-
     <div id="qr-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
             <div id="qr-code" class="mb-4"></div>
             <button onclick="document.getElementById('qr-modal').classList.add('hidden')" class="btn-accent px-6 py-2 rounded-lg">Close</button>
         </div>
     </div>
-
     <div id="notification-popup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm text-center glassmorphism glossy">
             <h3 id="notification-title" class="font-bold mb-2"></h3>
@@ -428,7 +420,6 @@
             <button onclick="document.getElementById('notification-popup').classList.add('hidden')" class="btn-accent px-6 py-2 rounded-lg">OK</button>
         </div>
     </div>
-
     <script type="module">
         const firebaseConfig = {
   apiKey: "AIzaSyDztMlC9va4oj3j1lcZj0Q5VFEzhRT2cbQ",
@@ -439,19 +430,16 @@
   messagingSenderId: "250139818902",
   appId: "1:250139818902:web:86437b289b90aa3e47fbb7"
 };
-        
+      
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, limit, Timestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-
         let currentUser = null;
         let userData = null;
         let appConfig = {};
-
         const loader = document.getElementById('loader');
         const coinBalanceEl = document.getElementById('coin-balance');
         const walletCoinBalanceEl = document.getElementById('wallet-coin-balance');
@@ -490,7 +478,6 @@
         const profileAvatar = document.getElementById('profile-avatar');
         const taskCoinHistoryList = document.getElementById('task-coin-history-list');
         const taskCountdownTimer = document.getElementById('task-countdown-timer');
-
         window.onload = () => {
             lucide.createIcons();
             setupEventListeners();
@@ -501,7 +488,6 @@
                 document.getElementById('current-date-time').textContent = new Date().toLocaleString();
             }, 1000);
         };
-
         async function handleAuthStateChange(user) {
             loader.style.display = 'flex';
             try {
@@ -542,7 +528,6 @@
                 loader.style.display = 'none';
             }
         }
-
         async function fetchUserData() {
             console.log("Fetching user data for UID:", currentUser?.uid);
             if (!currentUser) {
@@ -598,7 +583,6 @@
                 console.error("Error fetching user data:", error.code, error.message, error.stack);
             }
         }
-
         async function fetchAppConfig() {
             const configRef = doc(db, "config", "main");
             try {
@@ -616,14 +600,14 @@
                 console.error("Error fetching app config:", error);
             }
         }
-        
+      
         function updateUI() {
             if (!userData) return;
             const balance = userData.balance || 0;
             coinBalanceEl.textContent = balance;
             walletCoinBalanceEl.textContent = balance;
             ProfileCoinBalanceE1.textContent = balance;
-            profileNameEl.textContent = 'Username: ' + (userData.name || 'Anonymous');
+            document.getElementById('username-text').textContent = userData.name || 'Anonymous';
             profileEmailEl.textContent = userData.email || 'No Email';
             referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
@@ -660,7 +644,6 @@
             profileAvatar.classList.add(`${userData.membership}-frame`);
             loadEarningsSummary();
         }
-
         function updateAdsLeftCount() {
             const today = new Date().toISOString().split('T')[0];
             if (userData.lastAdWatchDate !== today) {
@@ -669,7 +652,6 @@
             const adsLeft = Math.max(0, (appConfig.dailyAdLimit || 10) - userData.dailyAdCount);
             adsLeftCountEl.textContent = adsLeft;
         }
-
         function updateDynamicPaymentFields() {
             const selectedMethod = withdrawMethodSelect.value.toLowerCase();
             let placeholder = "Enter your Number";
@@ -680,12 +662,10 @@
             if (selectedMethod.includes('bank')) placeholder = "Enter your Bank Details";
             paymentDetailsContainer.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-lg input-field">`;
         }
-
         function showMainPage(pageId) {
             document.querySelectorAll('.main-page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
-
         function navigateTo(pageId) {
             document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
@@ -703,7 +683,6 @@
             if (pageId === 'task-page') loadCoinHistory('task-coin-history-list');
         }
         window.navigateTo = navigateTo;
-
         function setupEventListeners() {
             document.getElementById('show-signup').addEventListener('click', (e) => {
                 e.preventDefault();
@@ -745,25 +724,49 @@
             withdrawMethodSelect.addEventListener('change', updateDynamicPaymentFields);
             historyFilter.addEventListener('change', loadWithdrawalHistory);
             document.getElementById('custom-share-btn').addEventListener('click', shareCustomMessage);
+            document.getElementById('edit-username-icon').addEventListener('click', editUsername);
+            document.getElementById('save-username-btn').addEventListener('click', saveUsername);
         }
-
         async function handleSignup() {
-            const name = document.getElementById('signup-name').value;
-            const email = document.getElementById('signup-email').value;
+            const name = document.getElementById('signup-name').value.trim();
+            const email = document.getElementById('signup-email').value.trim();
             const password = document.getElementById('signup-password').value;
             if (!name || !email || !password) return showAlert("Please fill all fields.");
             loader.style.display = 'flex';
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const userRef = doc(db, "users", userCredential.user.uid);
-                await updateDoc(userRef, { name: name });
+                const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+                const defaultUserData = {
+                    uid: userCredential.user.uid,
+                    name: name,
+                    email: email,
+                    balance: 10,
+                    referralCode: ownReferralCode,
+                    referredBy: null,
+                    lastNotificationCheck: serverTimestamp(),
+                    createdAt: serverTimestamp(),
+                    dailyAdCount: 0,
+                    lastAdWatchDate: new Date().toISOString().split('T')[0],
+                    isBlocked: false,
+                    streak: 0,
+                    actionsCount: 0,
+                    adsWatched: 0,
+                    gamesPlayed: 0,
+                    referrals: 0,
+                    totalEarned: 0,
+                    withdrawals: 0,
+                    membership: 'free',
+                    lastLogin: serverTimestamp(),
+                    coinHistory: []
+                };
+                await setDoc(doc(db, "users", userCredential.user.uid), defaultUserData);
+                showAlert("Sign up successful! Redirecting...");
             } catch (error) {
                 showAlert(error.message);
             } finally {
                 loader.style.display = 'none';
             }
         }
-
         async function handleLogin() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
@@ -777,11 +780,10 @@
                 loader.style.display = 'none';
             }
         }
-
         async function handleLogout() {
             await signOut(auth);
         }
-        
+      
         async function checkNewNotifications() {
             const lastCheck = userData.lastNotificationCheck;
             if (!lastCheck || typeof lastCheck.seconds === 'undefined') {
@@ -796,13 +798,11 @@
                 showNotificationPopup(latest.title, latest.message);
             }
         }
-
         function showNotificationPopup(title, message) {
             document.getElementById('notification-title').textContent = title;
             document.getElementById('notification-message').textContent = message;
             document.getElementById('notification-popup').classList.remove('hidden');
         }
-
         async function loadNotifications() {
             const listEl = document.getElementById('notifications-list');
             listEl.innerHTML = '<p class="text-gray-400">Loading...</p>';
@@ -826,7 +826,6 @@
                 listEl.innerHTML = '<p class="text-red-400">Error loading notifications.</p>';
             }
         }
-
         async function loadWithdrawalHistory() {
             const historyList = document.getElementById('withdrawal-history-list');
             historyList.innerHTML = '<p class="text-gray-400">Loading history...</p>';
@@ -857,7 +856,6 @@
                 historyList.innerHTML = '<p class="text-red-400 text-center">Error loading history.</p>';
             }
         }
-
         async function applyReferralBonus(referrerCode) {
             const usersRef = collection(db, "users");
             const q = query(usersRef, where("referralCode", "==", referrerCode));
@@ -882,7 +880,6 @@
                 showAlert("Error applying referral bonus.");
             }
         }
-
         async function updateBalance(amount, reason) {
             if (!currentUser) return;
             const newBalance = (userData.balance || 0) + amount;
@@ -914,19 +911,16 @@
             }
             updateUI();
         }
-
         async function handleWithdrawal() {
             const amount = parseInt(document.getElementById('withdraw-amount').value);
             const method = document.getElementById('withdraw-method').value;
             const paymentDetailInput = document.getElementById('payment-detail-input');
             const paymentDetail = paymentDetailInput ? paymentDetailInput.value.trim() : '';
             const minWithdrawal = appConfig.minWithdrawal || 5000;
-
             if (!amount || amount <= 0) return showAlert("Please enter a valid amount.");
             if (amount < minWithdrawal) return showAlert(`Minimum withdrawal is ${minWithdrawal} coins.`);
             if (amount > userData.balance) return showAlert("Insufficient balance.");
             if (!paymentDetail) return showAlert("Please enter payment details.");
-
             loader.style.display = 'flex';
             try {
                 await updateBalance(-amount, 'Withdrawal');
@@ -953,7 +947,6 @@
                 loader.style.display = 'none';
             }
         }
-
         function copyReferralCode() {
             const textToCopy = referralCodeEl.value;
             navigator.clipboard.writeText(textToCopy).then(() => {
@@ -962,7 +955,7 @@
                 showAlert("Failed to copy link.");
             });
         }
-        
+      
         function shareReferralCode() {
             const text = `Join Daily Earning and earn money! Use my referral link to get a bonus: https://t.me/addincome00_bot?start=${userData.referralCode}`;
             if (navigator.share) {
@@ -976,14 +969,12 @@
                 showAlert("Share feature is not available. Referral link has been copied instead!");
             }
         }
-
         function shareCustomMessage() {
             const msg = customInviteMsg.value + ` https://t.me/addincome00_bot?start=${userData.referralCode}`;
             navigator.clipboard.writeText(msg).then(() => {
                 showAlert("Custom message copied! Paste it in your social app.");
             });
         }
-
         function shareSocial(platform) {
             const referralLink = `https://t.me/addincome00_bot?start=${userData.referralCode}`;
             let shareUrl;
@@ -1005,25 +996,22 @@
             }
             window.open(shareUrl, '_blank');
         }
-
         window.claimReward = async function(taskType, skipReward = false) {
             const today = new Date().toISOString().split('T')[0];
             const userRef = doc(db, "users", currentUser.uid);
-
             if (userData.lastAdWatchDate !== today) {
                 await updateDoc(userRef, { dailyAdCount: 0, lastAdWatchDate: today });
                 userData.dailyAdCount = 0;
                 userData.lastAdWatchDate = today;
             }
-
             if (userData.dailyAdCount >= (appConfig.dailyAdLimit || 10)) {
                 return showAlert("You have reached your daily ad watch limit.");
             }
-            
+          
             if (typeof window.show_9828924 !== 'function') {
                 return showAlert("Ad service is currently unavailable. Please try again later.");
             }
-            
+          
             let adPromise;
             loader.style.display = 'flex';
             try {
@@ -1037,28 +1025,25 @@
                     case 'alternativeAd': adPromise = window.show_9828924(); break; // Use second new script if function differs
                     default: return;
                 }
-                
+              
                 await adPromise;
-
                 // Add wait time based on task
                 let waitTime = 0;
                 if (taskType === 'interstitial' || taskType === 'productReview') waitTime = 1000;
                 if (taskType === 'watchThreeAds') waitTime = 10000;
                 await new Promise(resolve => setTimeout(resolve, waitTime));
-
                 const newCount = (userData.dailyAdCount || 0) + 1;
                 await updateDoc(userRef, { dailyAdCount: newCount, adsWatched: (userData.adsWatched || 0) + 1, actionsCount: (userData.actionsCount || 0) + 1 });
                 userData.dailyAdCount = newCount;
                 userData.adsWatched += 1;
                 userData.actionsCount += 1;
-                
+              
                 let rewardAmount = 10;
                 if (taskType === 'miniApp') rewardAmount = 10;
                 else if (taskType === 'productReview') rewardAmount = 10;
                 else if (taskType === 'alternativeAd') rewardAmount = 10;
                 else if (taskType === 'popup') rewardAmount = 5;
                 else if (taskType === 'inApp') rewardAmount = 0;
-
                 if (rewardAmount > 0 && !skipReward) {
                     await updateBalance(rewardAmount, `${taskType} Reward`);
                     showAlert(`Congratulations! You have won ${rewardAmount} coins.`);
@@ -1072,7 +1057,6 @@
                 loader.style.display = 'none';
             }
         }
-
         window.watchThreeAds = async function() {
             try {
                 await claimReward('interstitial', true);
@@ -1084,7 +1068,6 @@
                 showAlert('Failed to watch all ads.');
             }
         }
-
         window.adMultiplier = async function() {
             try {
                 await claimReward('interstitial', true);
@@ -1095,7 +1078,6 @@
                 showAlert('Failed to watch ads for multiplier.');
             }
         }
-
         async function loadReferralLeaderboard() {
             const leaderboardList = document.getElementById('referral-leaderboard');
             leaderboardList.innerHTML = '<p class="text-gray-400">Loading leaderboard...</p>';
@@ -1144,7 +1126,6 @@
                 leaderboardList.innerHTML = '<p class="text-red-400 text-center">Error loading leaderboard.</p>';
             }
         }
-
         async function loadHomeLeaderboard() {
             homeLeaderboard.innerHTML = '<p class="text-gray-400">Loading...</p>';
             try {
@@ -1186,7 +1167,6 @@
                 homeLeaderboard.innerHTML = '<p class="text-red-400 text-center">Error loading.</p>';
             }
         }
-
         function startCountdown() {
             let time = 21600; // 6 hours in seconds
             const interval = setInterval(() => {
@@ -1200,7 +1180,6 @@
                     startCountdown();
                 }
             }, 1000);
-
             // For task page, 24 hours
             let taskTime = 7200; // 2 hours
             const taskInterval = setInterval(() => {
@@ -1215,7 +1194,6 @@
                 }
             }, 1000);
         }
-
         async function addToCoinHistory(reason, amount) {
             userData.coinHistory = userData.coinHistory || [];
             userData.coinHistory.push({ reason, amount, date: new Date().toLocaleString() });
@@ -1224,7 +1202,6 @@
             loadCoinHistory();
             loadCoinHistory('task-coin-history-list');
         }
-
         function loadCoinHistory(listId = 'coin-history-list') {
             const list = document.getElementById(listId);
             list.innerHTML = '';
@@ -1232,7 +1209,6 @@
                 list.innerHTML += `<div class="flex justify-between"><span>${entry.reason} (${entry.date})</span><span class="${entry.amount > 0 ? 'text-green-400' : 'text-red-400'}">${entry.amount}</span></div>`;
             });
         }
-
         async function loadReferHistory() {
             const referHistoryList = document.getElementById('refer-history-list');
             referHistoryList.innerHTML = '<p class="text-gray-400">Loading history...</p>';
@@ -1263,30 +1239,25 @@
                 referHistoryList.innerHTML = '<p class="text-red-400 text-center">Error loading history.</p>';
             }
         }
-
         async function loadEarningsSummary() {
             adsWatchedEl.textContent = userData.adsWatched || 0;
             gamesPlayedEl.textContent = userData.gamesPlayed || 0;
             referralsCountEl.textContent = userData.referrals || 0;
             totalEarnedEl.textContent = userData.totalEarned || 0;
             withdrawalsCountEl.textContent = userData.withdrawals || 0;
-
             homeAdsWatched.textContent = userData.adsWatched || 0;
             homeGamesPlayed.textContent = userData.gamesPlayed || 0;
             homeReferralsCount.textContent = userData.referrals || 0;
             homeTotalEarned.textContent = userData.totalEarned || 0;
             homeWithdrawalsCount.textContent = userData.withdrawals || 0;
         }
-
         function loadLastLogin() {
             lastLoginEl.textContent = userData.lastLogin ? userData.lastLogin.toDate().toLocaleString() : 'N/A';
         }
-
         function showSuccessAnimation() {
             successAnimation.classList.remove('hidden');
             setTimeout(() => successAnimation.classList.add('hidden'), 2000);
         }
-
         function showAlert(message) {
             document.getElementById('alert-message').textContent = message;
             document.getElementById('custom-alert').classList.remove('hidden');
@@ -1295,6 +1266,19 @@
             };
         }
         window.showAlert = showAlert;
+        function editUsername() {
+            document.getElementById('edit-username').value = userData.name || 'Anonymous';
+            document.getElementById('edit-username-container').classList.remove('hidden');
+        }
+        async function saveUsername() {
+            const newName = document.getElementById('edit-username').value.trim();
+            if (!newName) return showAlert("Please enter a name.");
+            const userRef = doc(db, "users", currentUser.uid);
+            await updateDoc(userRef, { name: newName });
+            userData.name = newName;
+            updateUI();
+            document.getElementById('edit-username-container').classList.add('hidden');
+        }
     </script>
 </body>
 </html>

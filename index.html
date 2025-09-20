@@ -166,11 +166,11 @@
                     <div class="space-y-3">
                         <div class="bg-blue-500 p-3 rounded-lg flex items-center justify-between text-white glassmorphism glossy">
                             <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs font-medium">Rewarded Interstitial</p></div></div>
-                            <button class="bg-white text-blue-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('interstitial')">Start</button>
+                            <button class="bg-white text-blue-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
                             <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 10 coins</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('productReview')">Watch</button>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy">
                             <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">25 coin bonus</p></div></div>
@@ -209,11 +209,11 @@
                     <div class="space-y-3">
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs text-gray-400">Rewarded</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('interstitial')">Start</button>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">📸</span><div><h3 class="font-semibold">Watch Product Review Ad</h3><p class="text-xs text-gray-400">Earn 10 coins</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('productReview')">Watch</button>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('productReview')">Watch</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">🎥</span><div><h3 class="font-semibold">Watch 3 Ads in a Row</h3><p class="text-xs text-gray-400">25 coin bonus</p></div></div>
@@ -221,7 +221,7 @@
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">💸</span><div><h3 class="font-bold">✅ Watch Ad & Earn</h3><p class="text-xs text-gray-400">Alternative Ad</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('alternativeAd')">Start</button>
+                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('alternativeAd')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">🧲</span><div><h3 class="font-semibold">Ad Multiplier (x2)</h3><p class="text-xs text-gray-400">Double coins</p></div></div>
@@ -233,7 +233,7 @@
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">💰</span><div><h3 class="font-semibold">Watch Ad & Earn</h3><p class="text-xs text-gray-400">In-App</p></div></div>
-                            <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="startCountdown(this); claimReward('inApp')">Start</button>
+                            <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">Start</button>
                         </div>
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between glassmorphism glossy liquid-glass">
                             <div class="flex items-center space-x-3"><span class="text-3xl">💵</span><div><h3 class="font-semibold">Watch Ad & Earn</h3><p class="text-xs text-gray-400">Popup</p></div></div>
@@ -1279,26 +1279,6 @@
             updateUI();
             document.getElementById('edit-username-container').classList.add('hidden');
         }
-    
-  function startCountdown(button) {
-    let timeLeft = 20;
-    button.disabled = true;
-    const originalText = button.innerText;
-
-    button.innerText = `Wait ${timeLeft}s`;
-
-    const timer = setInterval(() => {
-      timeLeft--;
-      button.innerText = `Wait ${timeLeft}s`;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        button.disabled = false;
-        button.innerText = originalText;
-      }
-    }, 1000);
-  }
-</script>
-    
+    </script>
 </body>
 </html>

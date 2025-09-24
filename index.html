@@ -1060,8 +1060,8 @@
         window.watchThreeAds = async function() {
             try {
                 await claimReward('interstitial', true);
-                await claimReward('popup', true);
-                await claimReward('inApp', true);
+                await claimReward('interstitial', true);
+                await claimReward('interstitial', true);
                 await updateBalance(25, '3 Ads Bonus');
                 showAlert('Bonus 25 coins for watching 3 ads!');
             } catch (e) {
@@ -1282,3 +1282,4 @@
     </script>
 </body>
 </html>
+

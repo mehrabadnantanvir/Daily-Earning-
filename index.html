@@ -611,7 +611,7 @@
             profileEmailEl.textContent = userData.email || 'No Email';
             referralCodeEl.value = `https://t.me/addincome00_bot?start=${userData.referralCode || 'ABC123'}`;
             minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
-            coinValueInfoEl.textContent = `${appConfig.coinValueCoins || 1000} Coins = ৳ ${appConfig.coinValueInr || 15}`;
+            coinValueInfoEl.textContent = `${appConfig.coinValueCoins || 1000} Coins = ৳ ${appConfig.coinValueInr || 20}`;
             withdrawMethodSelect.innerHTML = '';
             (appConfig.paymentMethods || []).forEach(method => {
                 let icon = '';
@@ -1282,5 +1282,6 @@
     </script>
 </body>
 </html>
+
 
 
